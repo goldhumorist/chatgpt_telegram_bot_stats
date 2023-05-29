@@ -1,0 +1,7 @@
+.header {
+  @apply px-14 py-5 flex justify-between border-b border-dashed border-primary-text-color text-primary-text-color;
+
+  .header-link-text {
+    @apply mx-2;
+  }
+}
