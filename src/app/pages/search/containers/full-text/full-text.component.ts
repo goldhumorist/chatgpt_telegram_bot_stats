@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-statistic',
-  templateUrl: './statistic.component.html',
-  styleUrls: ['./statistic.component.scss'],
+  selector: 'app-full-text',
+  templateUrl: './full-text.component.html',
+  styleUrls: ['./full-text.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StatisticComponent implements OnInit {
+export class FullTextComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
