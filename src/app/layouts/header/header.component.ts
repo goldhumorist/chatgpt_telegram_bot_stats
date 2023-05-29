@@ -1,5 +1,5 @@
 import { AppRouteEnum } from './../../core/enums/app-routes';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   faHome,
   faSearch,
@@ -12,13 +12,9 @@ import {
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   public readonly faHome = faHome;
   public readonly faSearch = faSearch;
   public readonly faChartBar = faChartBar;
   public readonly appRouteEnum = AppRouteEnum;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

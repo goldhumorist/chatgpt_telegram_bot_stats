@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-full-text',
@@ -6,8 +6,4 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./full-text.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FullTextComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class FullTextComponent {}

@@ -5,16 +5,16 @@ import { AppRouteEnum } from './core/enums/app-routes';
 const routes: Routes = [
   {
     path: AppRouteEnum.Home,
-    loadChildren: () => import('./pages/home').then((m) => m.HomeModule),
+    loadChildren: () => import('./pages/home').then(m => m.HomeModule),
   },
   {
     path: AppRouteEnum.Search,
-    loadChildren: () => import('./pages/search').then((m) => m.SearchModule),
+    loadChildren: () => import('./pages/search').then(m => m.SearchModule),
   },
   {
     path: AppRouteEnum.Statistic,
     loadChildren: () =>
-      import('./pages/statistic').then((m) => m.StatisticModule),
+      import('./pages/statistic').then(m => m.StatisticModule),
   },
   {
     path: '**',

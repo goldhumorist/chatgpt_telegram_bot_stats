@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-statistic',
@@ -6,8 +6,4 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./statistic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StatisticComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class StatisticComponent {}
