@@ -1,3 +1,4 @@
+import { AppRouteEnum } from './../../core/enums/app-routes';
 import { Component, OnInit } from '@angular/core';
 import {
   faHome,
@@ -11,9 +12,10 @@ import {
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  faHome = faHome;
-  faSearch = faSearch;
-  faChartBar = faChartBar;
+  public readonly faHome = faHome;
+  public readonly faSearch = faSearch;
+  public readonly faChartBar = faChartBar;
+  public readonly appRouteEnum = AppRouteEnum;
 
   constructor() {}
 

@@ -1,22 +1,22 @@
 <header class="header">
   <div>
-    <a [routerLink]="['/']">
+    <a [routerLink]="appRouteEnum.Home">
       <fa-icon [icon]="faHome"></fa-icon>
-      <span class="header-link-text">home</span></a
-    >
+      <span class="header-link-text">home</span>
+    </a>
   </div>
 
   <div>
-    <a [routerLink]="['/search']">
+    <a [routerLink]="appRouteEnum.Search">
       <fa-icon [icon]="faSearch"></fa-icon>
-      <span class="header-link-text">searching</span></a
-    >
+      <span class="header-link-text">searching</span>
+    </a>
   </div>
 
   <div>
-    <a [routerLink]="['/statistic']">
+    <a [routerLink]="appRouteEnum.Statistic">
       <fa-icon [icon]="faChartBar"></fa-icon>
-      <span class="header-link-text">statistic</span></a
-    >
+      <span class="header-link-text">statistic</span>
+    </a>
   </div>
 </header>

@@ -1,0 +1,14 @@
+.app-title {
+  @apply text-2xl text-center;
+
+  .app-title__link {
+    @apply bg-primary-btn-color hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300;
+  }
+}
+
+.image-container {
+  @apply pt-8;
+  img {
+    @apply mx-auto w-1/3 h-1/3;
+  }
+}
