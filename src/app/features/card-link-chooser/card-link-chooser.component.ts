@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-card-link-chooser',
@@ -6,4 +7,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./card-link-chooser.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardLinkChooserComponent {}
+export class CardLinkChooserComponent {
+  @Input()
+  titleText!: string;
+
+  @Input()
+  icon!: IconDefinition;
+
+  @Input()
+  navigationLink!: string;
+}
