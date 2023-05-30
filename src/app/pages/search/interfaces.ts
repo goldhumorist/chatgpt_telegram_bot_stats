@@ -1,9 +1,3 @@
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { ISubPageOptions } from './../../features/interfaces';
 
-export interface IIndexSearchSubPagesOptions {
-  title: string;
-  icon: IconDefinition;
-  link: string;
-}
-
-export type TIndexSearchSubPages = Array<IIndexSearchSubPagesOptions>;
+export type TIndexSearchSubPages = Array<ISubPageOptions>;

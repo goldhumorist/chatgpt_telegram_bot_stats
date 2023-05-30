@@ -5,9 +5,7 @@
   <ng-container *ngFor="let searchSubPage of searchSubPages">
     <div class="card-link__container">
       <app-card-link-chooser
-        [titleText]="searchSubPage.title"
-        [icon]="searchSubPage.icon"
-        [navigationLink]="searchSubPage.link"></app-card-link-chooser>
+        [subPageOptions]="searchSubPage"></app-card-link-chooser>
     </div>
   </ng-container>
 </div>

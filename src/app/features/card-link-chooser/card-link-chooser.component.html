@@ -1,7 +1,9 @@
 <div class="card-link__container">
-  <p>{{ titleText }}</p>
+  <p>{{ subPageOptions.title }}</p>
 
-  <fa-icon class="card-link__icon" [icon]="icon"></fa-icon>
+  <fa-icon class="card-link__icon" [icon]="subPageOptions.icon"></fa-icon>
 
-  <a [routerLink]="navigationLink" class="card-link__btn">GO TO THE PAGE</a>
+  <a [routerLink]="subPageOptions.link" class="card-link__btn">
+    GO TO THE PAGE</a
+  >
 </div>

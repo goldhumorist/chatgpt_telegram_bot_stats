@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { ISubPageOptions } from '../interfaces';
 
 @Component({
   selector: 'app-card-link-chooser',
@@ -9,11 +9,5 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 })
 export class CardLinkChooserComponent {
   @Input()
-  titleText!: string;
-
-  @Input()
-  icon!: IconDefinition;
-
-  @Input()
-  navigationLink!: string;
+  subPageOptions!: ISubPageOptions;
 }
