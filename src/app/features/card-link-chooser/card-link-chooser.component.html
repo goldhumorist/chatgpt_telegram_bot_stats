@@ -1,1 +1,7 @@
-<p>card-link-chooser works!</p>
+<div class="card-link__container">
+  <p>{{ titleText }}</p>
+
+  <fa-icon class="card-link__icon" [icon]="icon"></fa-icon>
+
+  <a [routerLink]="navigationLink" class="card-link__btn">GO TO THE PAGE</a>
+</div>

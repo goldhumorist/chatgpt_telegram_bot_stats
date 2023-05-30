@@ -1,22 +1,24 @@
 <header class="header">
-  <div>
-    <a [routerLink]="appRouteEnum.Home">
-      <fa-icon [icon]="faHome"></fa-icon>
-      <span class="header-link-text">home</span>
-    </a>
-  </div>
+  <div class="header-content__container">
+    <div class="header-link__container">
+      <a [routerLink]="appRouteEnum.Home">
+        <fa-icon [icon]="faHome"></fa-icon>
+        <span class="header-link-text">home</span>
+      </a>
+    </div>
 
-  <div>
-    <a [routerLink]="appRouteEnum.Search">
-      <fa-icon [icon]="faSearch"></fa-icon>
-      <span class="header-link-text">searching</span>
-    </a>
-  </div>
+    <div class="header-link__container">
+      <a [routerLink]="appRouteEnum.Search">
+        <fa-icon [icon]="faSearch"></fa-icon>
+        <span class="header-link-text">searching</span>
+      </a>
+    </div>
 
-  <div>
-    <a [routerLink]="appRouteEnum.Statistic">
-      <fa-icon [icon]="faChartBar"></fa-icon>
-      <span class="header-link-text">statistic</span>
-    </a>
+    <div class="header-link__container">
+      <a [routerLink]="appRouteEnum.Statistic">
+        <fa-icon [icon]="faChartBar"></fa-icon>
+        <span class="header-link-text">statistic</span>
+      </a>
+    </div>
   </div>
 </header>

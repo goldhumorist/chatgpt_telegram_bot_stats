@@ -1,2 +1,13 @@
-<p>index works!</p>
-<app-card-link-chooser></app-card-link-chooser>
+<h2 class="title">Here you can see the modes for getting search statistics</h2>
+<p class="sub-title">Please, choose what you want</p>
+
+<div class="card-links__container">
+  <ng-container *ngFor="let searchSubPage of searchSubPages">
+    <div class="card-link__container">
+      <app-card-link-chooser
+        [titleText]="searchSubPage.title"
+        [icon]="searchSubPage.icon"
+        [navigationLink]="searchSubPage.link"></app-card-link-chooser>
+    </div>
+  </ng-container>
+</div>

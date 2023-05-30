@@ -1,0 +1,17 @@
+.card-link__container {
+  @apply w-full h-full rounded-lg text-center py-3 px-3 pb-6
+  text-primary-text-color flex flex-col justify-between items-center
+  border-t-2 border-indigo-500 shadow-lg shadow-indigo-300
+  hover:scale-105
+  transition-transform duration-300 transform-gpu;
+
+  .card-link__icon {
+    @apply text-8xl;
+  }
+
+  .card-link__btn {
+    @apply bg-primary-btn-color
+    text-white px-2 py-1
+    rounded-lg cursor-pointer;
+  }
+}
