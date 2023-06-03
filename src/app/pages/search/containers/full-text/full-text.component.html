@@ -26,7 +26,7 @@
   </div>
 
   <ng-container
-    *ngIf="searchResponse$ | async as searchResponse; else emptySearchResult">
+    *ngIf="searchResponse$ | async as searchResponse; else noSearchResult">
     <div>
       <!-- <h3 class="search-result-title">Here are the results of your query:</h3> -->
 
@@ -65,13 +65,15 @@
   </div>
 </ng-container>
 
-<ng-template #emptySearchResult>
-  <ng-container *ngIf="isLoading$ | async; else initText">
-    <div>LOADING....</div>
+<ng-template #noSearchResult>
+  <ng-container *ngIf="isLoading$ | async; else greetingText">
+    <div class="loading-container">
+      <app-loading-spiner spinerSize="60"></app-loading-spiner>
+    </div>
   </ng-container>
 </ng-template>
 
-<ng-template #initText>
+<ng-template #greetingText>
   <div class="empty-search-result-title">
     To see results, please, use the search form
   </div>

@@ -1,3 +1,4 @@
+import { LoadingSpinerModule } from './components/loading-spiner/loading-spiner.module';
 import { PageTittleModule } from './components/page-tittle/page-tittle.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,6 +8,11 @@ import { CardLinkChooserModule } from './components/card-link-chooser/card-link-
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  exports: [PageTittleModule, NavigationLinkModule, CardLinkChooserModule],
+  exports: [
+    PageTittleModule,
+    NavigationLinkModule,
+    CardLinkChooserModule,
+    LoadingSpinerModule,
+  ],
 })
 export class SharedModule {}

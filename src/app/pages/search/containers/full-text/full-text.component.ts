@@ -63,6 +63,12 @@ export class FullTextComponent {
           shareReplay(1)
         );
 
+      if (
+        this.paginationData.totalAvaibleAmount <=
+        this.paginationData.currentAmount + this.paginationData.limit
+      )
+        this.isNextPageAvaible = false;
+
       return;
     }
     this.isNextPageAvaible = false;
@@ -86,7 +92,11 @@ export class FullTextComponent {
 
       this.isNextPageAvaible = true;
 
+      if (this.paginationData.page === 1) this.isPreviousPageAvaible = false;
+
       return;
     }
+
+    this.isPreviousPageAvaible = false;
   }
 }

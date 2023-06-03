@@ -41,3 +41,7 @@
 .empty-search-result-title {
   @apply w-full text-center text-2xl;
 }
+
+.loading-container {
+  @apply w-full h-full;
+}
