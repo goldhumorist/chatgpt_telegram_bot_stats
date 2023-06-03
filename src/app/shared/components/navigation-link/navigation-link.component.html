@@ -1,0 +1,13 @@
+<div class="link-container">
+  <button (click)="onClick()">
+    <ng-container *ngIf="isLeftArrow">
+      <fa-icon [icon]="faLongArrowAltLeft"></fa-icon>
+    </ng-container>
+
+    <span class="link-text">{{ title }}</span>
+
+    <ng-container *ngIf="!isLeftArrow">
+      <fa-icon [icon]="faLongArrowAltRight"></fa-icon>
+    </ng-container>
+  </button>
+</div>

@@ -1,1 +1,78 @@
-<p>full-text works!</p>
+<app-page-tittle
+  title="Here you can try to search data by word or phrase"
+  subTitle="Use the form to find exactly what you need"></app-page-tittle>
+
+<div class="managing-container">
+  <app-navigation-link
+    [isLeftArrow]="true"
+    title="GO BACK"
+    [link]="searchIndexPageRoute"></app-navigation-link>
+
+  <app-navigation-link
+    [isLeftArrow]="false"
+    title="GO NEXT"
+    link="/search/by-username"></app-navigation-link>
+</div>
+
+<div class="main-content__container">
+  <div class="form__container">
+    <app-search-form
+      [searchFormOptions]="{
+        title: 'Full-Text Search',
+        titlePlaceholder: 'Enter a word or a phase for search'
+      }"
+      [isFullTextSearch]="true"
+      (searchFormEmitter)="onSearchSubmit($event)"></app-search-form>
+  </div>
+
+  <ng-container
+    *ngIf="searchResponse$ | async as searchResponse; else emptySearchResult">
+    <div>
+      <!-- <h3 class="search-result-title">Here are the results of your query:</h3> -->
+
+      <ng-container *ngIf="searchResponse$ | async as searchResponse">
+        <ng-container *ngIf="searchResponse.suggestions.length">
+          <p class="search-result__suggestions-title">Perhaps you meant:</p>
+          <div
+            class="search-result__suggestion"
+            *ngFor="let suggestion of searchResponse.suggestions">
+            <span>
+              {{ suggestion.text }}
+            </span>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <app-user-log-cards [userLogs]="searchResponse.hits"></app-user-log-cards>
+    </div>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="searchResponse$ | async as searchResponse">
+  <div class="paggination-container">
+    <button
+      *ngIf="isPreviousPageAvaible"
+      class="previous-page-btn"
+      (click)="loadPreviousPage()">
+      Previous Page
+    </button>
+    <button
+      *ngIf="isNextPageAvaible"
+      class="next-page-btn"
+      (click)="loadNextPage()">
+      Next Page
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #emptySearchResult>
+  <ng-container *ngIf="isLoading$ | async; else initText">
+    <div>LOADING....</div>
+  </ng-container>
+</ng-template>
+
+<ng-template #initText>
+  <div class="empty-search-result-title">
+    To see results, please, use the search form
+  </div>
+</ng-template>

@@ -1,0 +1,43 @@
+.managing-container {
+  @apply flex justify-between;
+}
+
+.main-content__container {
+  @apply flex h-full;
+
+  .users-log__container {
+    @apply grid grid-cols-4 gap-11 pb-4 pl-4;
+
+    block-size: fit-content;
+  }
+
+  .form__container {
+    @apply w-[23vw];
+  }
+
+  .search-result-title {
+    @apply text-lg pl-4;
+  }
+
+  .search-result__suggestions-title {
+    @apply text-lg pl-4;
+  }
+  .search-result__suggestion {
+    @apply text-blue-400 pl-4 italic cursor-pointer;
+  }
+}
+
+.paggination-container {
+  @apply flex justify-end p-3;
+
+  .next-page-btn {
+    @apply bg-primary-btn-color p-1 rounded-lg mx-1;
+  }
+  .previous-page-btn {
+    @apply bg-primary-btn-color p-1 rounded-lg mx-1;
+  }
+}
+
+.empty-search-result-title {
+  @apply w-full text-center text-2xl;
+}

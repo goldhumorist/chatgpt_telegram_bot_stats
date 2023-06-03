@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CardLinkChooserModule } from './card-link-chooser/card-link-chooser.module';
+import { SearchModule } from './search/search.module';
+import { UserLogModule } from './user-log/user-log.module';
 
 @NgModule({
-  exports: [CardLinkChooserModule],
+  exports: [SearchModule, UserLogModule],
 })
 export class FeaturesModule {}

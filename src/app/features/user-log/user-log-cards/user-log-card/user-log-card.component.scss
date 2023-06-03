@@ -1,0 +1,7 @@
+.user-log__card {
+  @apply text-xs border border-indigo-500 rounded-md p-2 w-[100%];
+
+  .user-log__headline {
+    @apply text-primary-text-color font-bold pr-1;
+  }
+}

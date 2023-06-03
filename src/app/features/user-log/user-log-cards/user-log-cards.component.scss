@@ -1,0 +1,5 @@
+.users-log__container {
+  @apply grid grid-cols-3 gap-2 pb-4 pl-4;
+
+  block-size: fit-content;
+}

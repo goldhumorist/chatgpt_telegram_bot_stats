@@ -1,0 +1,26 @@
+<div class="user-log__card">
+  <p><span class="user-log__headline">User_ID:</span> {{ userLog.userId }}</p>
+  <p>
+    <span class="user-log__headline">Username:</span> {{ userLog.userName }}
+  </p>
+  <p>
+    <span class="user-log__headline">Language:</span>
+    {{ userLog.languageCode }}
+  </p>
+  <p>
+    <span class="user-log__headline">Question:</span>
+    {{ userLog.question }}
+  </p>
+  <p>
+    <span class="user-log__headline">Response:</span>
+    {{ userLog.response }}
+  </p>
+  <p>
+    <span class="user-log__headline">Date of Request:</span>
+    {{ userLog.requestDate | date : 'medium' }}
+  </p>
+  <p>
+    <span class="user-log__headline">Date of Response:</span>
+    {{ userLog.responseDate | date : 'medium' }}
+  </p>
+</div>

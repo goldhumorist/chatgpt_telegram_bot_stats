@@ -1,0 +1,8 @@
+.link-container {
+  @apply bg-primary-text-color inline-block my-4 px-2 py-1 hover:bg-gray-700 bg-opacity-30
+        rounded-lg transition duration-300;
+
+  .link-text {
+    @apply mx-2;
+  }
+}

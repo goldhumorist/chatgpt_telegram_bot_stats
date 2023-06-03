@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ISubPageOptions } from '../interfaces';
+import { ISubPageOptions } from '../../../features/interfaces';
 
 @Component({
   selector: 'app-card-link-chooser',
