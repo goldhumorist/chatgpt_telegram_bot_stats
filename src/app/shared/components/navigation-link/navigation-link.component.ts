@@ -1,3 +1,5 @@
+import { Location } from '@angular/common';
+import { AppRouteEnum } from './../../../core/enums/app-routes';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -15,7 +17,7 @@ export class NavigationLinkComponent {
   public readonly faLongArrowAltLeft = faLongArrowAltLeft;
   public readonly faLongArrowAltRight = faLongArrowAltRight;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private location: Location) {}
 
   @Input()
   isLeftArrow!: boolean;
@@ -27,6 +29,7 @@ export class NavigationLinkComponent {
   link!: string;
 
   onClick() {
-    this.router.navigate([this.link]);
+    if (this.link === AppRouteEnum.ToBack) this.location.back();
+    else this.router.navigate([this.link]);
   }
 }
