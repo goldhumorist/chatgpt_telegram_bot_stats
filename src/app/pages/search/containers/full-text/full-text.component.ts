@@ -1,4 +1,4 @@
-import { IFullTextResponse } from './../../../../features/interfaces';
+import { IFullTextSearchResponse } from './../../../../features/interfaces';
 import { SearchRoutingEnum } from '../../enums';
 import { FullTextSearchService } from '../../../../features/search/api/full-text-seach.service';
 import { TFullTextSearchData } from './../../interfaces';
@@ -14,7 +14,7 @@ import { BehaviorSubject, Observable, finalize, shareReplay, tap } from 'rxjs';
 export class FullTextComponent {
   readonly searchIndexPageRoute = SearchRoutingEnum.SearchIndexPage;
 
-  searchResponse$!: Observable<IFullTextResponse>;
+  searchResponse$!: Observable<IFullTextSearchResponse>;
   paginationData = {
     page: 1,
     limit: 6,
@@ -83,7 +83,7 @@ export class FullTextComponent {
         .search({ ...this.tempSearchData, ...this.paginationData })
         .pipe(
           tap(data => {
-            this.paginationData.currentAmount += data.hits.length;
+            this.paginationData.currentAmount -= data.hits.length;
           }),
           finalize(() => this.isLoading$.next(false)),
 

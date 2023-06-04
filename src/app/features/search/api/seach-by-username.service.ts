@@ -3,23 +3,24 @@ import { BaseApiService } from '../../../core/services/base-api.service';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import {
-  IFullTextHTTPResponse,
-  IFullTextSearchResponse,
+  ISearchByUsernameHTTPResponse,
+  ISearchByUsernameResponse,
 } from '../../interfaces';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FullTextSearchService {
+export class SearchByUsernameService {
   constructor(private baseApiService: BaseApiService) {}
 
-  search(data: TFullTextSearchData): Observable<IFullTextSearchResponse> {
-    const { searchWord, searchIn, page, limit, dateFrom, dateTo } = data;
+  search(data: TFullTextSearchData): Observable<ISearchByUsernameResponse> {
+    const { searchWord, page, limit, dateFrom, dateTo } = data;
+
+    console.log('SearchByUsernameService', data);
 
     let params = new HttpParams()
-      .set('phraseToSearch', searchWord)
-      .set('searchIn', searchIn || '')
+      .set('username', searchWord)
       .set('page', page || 1)
       .set('limit', limit || 20);
 
@@ -29,7 +30,7 @@ export class FullTextSearchService {
     if (dateTo) params = params.set('searchTo', dateTo as unknown as string);
 
     return this.baseApiService
-      .get<IFullTextHTTPResponse>('/api/v1/search/full-text', {
+      .get<ISearchByUsernameHTTPResponse>('/api/v1/search/by-username', {
         params,
       })
       .pipe(map(response => response.data));

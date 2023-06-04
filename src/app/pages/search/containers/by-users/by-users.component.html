@@ -1,1 +1,65 @@
-<p>by-users works!</p>
+<app-page-tittle
+  title="Here you can try to search logs by username"
+  subTitle="Use the form to find user's logs"></app-page-tittle>
+
+<div class="managing-container">
+  <app-navigation-link
+    [isLeftArrow]="true"
+    title="GO BACK"
+    [link]="searchIndexPageRoute"></app-navigation-link>
+
+  <app-navigation-link
+    [isLeftArrow]="false"
+    title="GO NEXT"
+    link="/search/full-text"></app-navigation-link>
+</div>
+
+<div class="main-content__container">
+  <div class="form__container">
+    <app-search-form
+      [searchFormOptions]="{
+        title: 'Searcxh by username',
+        titlePlaceholder: 'Enter username to find logs'
+      }"
+      [isFullTextSearch]="false"
+      (searchFormEmitter)="onSearchSubmit($event)"></app-search-form>
+  </div>
+
+  <ng-container
+    *ngIf="searchResponse$ | async as searchResponse; else noSearchResult">
+    <div>
+      <app-user-log-cards [userLogs]="searchResponse.hits"></app-user-log-cards>
+    </div>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="searchResponse$ | async as searchResponse">
+  <div class="paggination-container">
+    <button
+      *ngIf="isPreviousPageAvaible"
+      class="previous-page-btn"
+      (click)="loadPreviousPage()">
+      Previous Page
+    </button>
+    <button
+      *ngIf="isNextPageAvaible"
+      class="next-page-btn"
+      (click)="loadNextPage()">
+      Next Page
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #noSearchResult>
+  <ng-container *ngIf="isLoading$ | async; else greetingText">
+    <div class="loading-container">
+      <app-loading-spiner spinerSize="60"></app-loading-spiner>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #greetingText>
+  <div class="empty-search-result-title">
+    To see results, please, use the search form
+  </div>
+</ng-template>

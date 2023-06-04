@@ -49,11 +49,30 @@ export interface IFullTextHTTPResponse {
   };
 }
 
-export interface IFullTextResponse {
+export interface ISearchByUsernameHTTPResponse {
+  status: number;
+  data: {
+    total: {
+      value: number;
+      relation: string;
+    };
+    hits: Array<IUserLog>;
+  };
+}
+
+export interface IFullTextSearchResponse {
   total: {
     value: number;
     relation: string;
   };
   hits: Array<IUserLog>;
   suggestions: Array<ISuggestions>;
+}
+
+export interface ISearchByUsernameResponse {
+  total: {
+    value: number;
+    relation: string;
+  };
+  hits: Array<IUserLog>;
 }
