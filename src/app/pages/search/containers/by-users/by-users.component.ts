@@ -1,3 +1,4 @@
+import { AppRouteEnum } from './../../../../core/enums/app-routes';
 import { BehaviorSubject, Observable, finalize, shareReplay, tap } from 'rxjs';
 import { ISearchByUsernameResponse } from './../../../../features/interfaces';
 import { SearchByUsernameService } from './../../../../features/search/api/seach-by-username.service';
@@ -13,13 +14,14 @@ import { TSearchByUsernameData } from '../../interfaces';
 })
 export class ByUsersComponent {
   readonly searchIndexPageRoute = SearchRoutingEnum.SearchIndexPage;
+  readonly backRoute = AppRouteEnum.ToBack;
 
   constructor(private searchByUsernameService: SearchByUsernameService) {}
 
   searchResponse$!: Observable<ISearchByUsernameResponse>;
   paginationData = {
     page: 1,
-    limit: 5,
+    limit: 10,
     totalAvaibleAmount: 0,
     currentAmount: 0,
   };

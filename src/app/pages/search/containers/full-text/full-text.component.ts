@@ -1,3 +1,4 @@
+import { AppRouteEnum } from './../../../../core/enums/app-routes';
 import { IFullTextSearchResponse } from './../../../../features/interfaces';
 import { SearchRoutingEnum } from '../../enums';
 import { FullTextSearchService } from '../../../../features/search/api/full-text-seach.service';
@@ -13,11 +14,12 @@ import { BehaviorSubject, Observable, finalize, shareReplay, tap } from 'rxjs';
 })
 export class FullTextComponent {
   readonly searchIndexPageRoute = SearchRoutingEnum.SearchIndexPage;
+  readonly backRoute = AppRouteEnum.ToBack;
 
   searchResponse$!: Observable<IFullTextSearchResponse>;
   paginationData = {
     page: 1,
-    limit: 6,
+    limit: 10,
     totalAvaibleAmount: 0,
     currentAmount: 0,
   };
