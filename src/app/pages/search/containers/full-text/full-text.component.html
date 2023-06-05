@@ -49,20 +49,13 @@
 </div>
 
 <ng-container *ngIf="searchResponse$ | async as searchResponse">
-  <div class="paggination-container">
-    <button
-      *ngIf="isPreviousPageAvaible"
-      class="previous-page-btn"
-      (click)="loadPreviousPage()">
-      Previous Page
-    </button>
-    <button
-      *ngIf="isNextPageAvaible"
-      class="next-page-btn"
-      (click)="loadNextPage()">
-      Next Page
-    </button>
-  </div>
+  <app-search-pages-pagination
+    [isNextPageAvaible]="isNextPageAvaible"
+    [isPreviousPageAvaible]="isPreviousPageAvaible"
+    (loadNextPageEmitter)="loadNextPage()"
+    (loadPreviousPageEmitter)="
+      loadPreviousPage()
+    "></app-search-pages-pagination>
 </ng-container>
 
 <ng-template #noSearchResult>

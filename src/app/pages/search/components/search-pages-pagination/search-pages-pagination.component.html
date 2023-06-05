@@ -1,0 +1,14 @@
+<div class="paggination-container">
+  <button
+    *ngIf="isPreviousPageAvaible"
+    class="previous-page-btn"
+    (click)="loadPreviousPage()">
+    Previous Page
+  </button>
+  <button
+    *ngIf="isNextPageAvaible"
+    class="next-page-btn"
+    (click)="loadNextPage()">
+    Next Page
+  </button>
+</div>

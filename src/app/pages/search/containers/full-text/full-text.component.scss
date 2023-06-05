@@ -27,17 +27,6 @@
   }
 }
 
-.paggination-container {
-  @apply flex justify-end p-3;
-
-  .next-page-btn {
-    @apply bg-primary-btn-color p-1 rounded-lg mx-1;
-  }
-  .previous-page-btn {
-    @apply bg-primary-btn-color p-1 rounded-lg mx-1;
-  }
-}
-
 .empty-search-result-title {
   @apply w-full text-center text-2xl;
 }
