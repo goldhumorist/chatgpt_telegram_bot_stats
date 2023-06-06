@@ -1,4 +1,4 @@
-import { UserLogCardsModule } from './user-log-cards/user-log-cards.module';
+import { UserLogCardsModule } from './user-log-cards';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

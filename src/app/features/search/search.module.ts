@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SearchFormModule } from './search-form/search-form.module';
+import { SearchFormModule } from './search-form';
 
 @NgModule({
   exports: [SearchFormModule],
