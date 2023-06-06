@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SearchModule } from './search/search.module';
-import { UserLogModule } from './user-log/user-log.module';
+import { SearchModule } from './search';
+import { UserLogModule } from './user-log';
 
 @NgModule({
   exports: [SearchModule, UserLogModule],
