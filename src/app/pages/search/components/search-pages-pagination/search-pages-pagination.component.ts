@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 
@@ -12,24 +13,20 @@ import {
   styleUrls: ['./search-pages-pagination.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchPagesPaginationComponent {
-  @Input()
-  isNextPageAvaible = true;
+export class SearchPagesPaginationComponent implements OnInit {
+  @Input() currentPage = 1;
+  @Input() total = 0;
+  @Input() limit = 20;
+  @Output() changePage = new EventEmitter<number>();
 
-  @Input()
-  isPreviousPageAvaible = true;
+  pages: number[] = [];
 
-  @Output()
-  loadPreviousPageEmitter: EventEmitter<void> = new EventEmitter();
-
-  @Output()
-  loadNextPageEmitter: EventEmitter<void> = new EventEmitter();
-
-  loadNextPage() {
-    this.loadNextPageEmitter.emit();
+  ngOnInit(): void {
+    const pagesCount = Math.ceil(this.total / this.limit);
+    this.pages = this.range(1, pagesCount);
   }
 
-  loadPreviousPage() {
-    this.loadPreviousPageEmitter.emit();
+  range(start: number, end: number): number[] {
+    return [...Array(end).keys()].map(el => el + start);
   }
 }

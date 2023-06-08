@@ -1,5 +1,5 @@
 import { AppRouteEnum } from './../../../../core/enums/app-routes';
-import { BehaviorSubject, Observable, finalize, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, Observable, finalize, shareReplay } from 'rxjs';
 import { ISearchByUsernameResponse } from './../../../../features/interfaces';
 import { SearchByUsernameService } from './../../../../features/search/api/seach-by-username.service';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
@@ -19,15 +19,9 @@ export class ByUsersComponent {
   constructor(private searchByUsernameService: SearchByUsernameService) {}
 
   searchResponse$!: Observable<ISearchByUsernameResponse>;
-  paginationData = {
-    page: 1,
-    limit: 10,
-    totalAvaibleAmount: 0,
-    currentAmount: 0,
-  };
+  page = 1;
+  limit = 10;
   tempSearchData!: TSearchByUsernameData;
-  isPreviousPageAvaible = false;
-  isNextPageAvaible = true;
   isLoading$ = new BehaviorSubject<boolean>(false);
 
   onSearchSubmit(data: TSearchByUsernameData) {
@@ -35,70 +29,22 @@ export class ByUsersComponent {
     this.isLoading$.next(true);
 
     this.searchResponse$ = this.searchByUsernameService
-      .search({ ...this.tempSearchData, ...this.paginationData })
+      .search({ ...this.tempSearchData, page: this.page, limit: this.limit })
       .pipe(
-        tap(data => {
-          this.paginationData.totalAvaibleAmount = data.total.value;
-          this.paginationData.currentAmount += data.hits.length;
-        }),
         finalize(() => this.isLoading$.next(false)),
         shareReplay(1)
       );
   }
 
-  loadNextPage() {
-    if (
-      this.paginationData.totalAvaibleAmount > this.paginationData.currentAmount
-    ) {
-      this.isPreviousPageAvaible = true;
-      this.paginationData.page += 1;
-      this.isLoading$.next(true);
+  changePage(page: number) {
+    this.isLoading$.next(true);
+    this.searchResponse$ = this.searchByUsernameService
+      .search({ ...this.tempSearchData, page, limit: this.limit })
+      .pipe(
+        finalize(() => this.isLoading$.next(false)),
+        shareReplay(1)
+      );
 
-      this.searchResponse$ = this.searchByUsernameService
-        .search({ ...this.tempSearchData, ...this.paginationData })
-        .pipe(
-          tap(data => {
-            this.paginationData.currentAmount += data.hits.length;
-          }),
-          finalize(() => this.isLoading$.next(false)),
-
-          shareReplay(1)
-        );
-
-      if (
-        this.paginationData.totalAvaibleAmount <=
-        this.paginationData.currentAmount + this.paginationData.limit
-      )
-        this.isNextPageAvaible = false;
-
-      return;
-    }
-    this.isNextPageAvaible = false;
-  }
-
-  loadPreviousPage() {
-    if (this.paginationData.page > 1) {
-      this.paginationData.page -= 1;
-      this.isLoading$.next(true);
-
-      this.searchResponse$ = this.searchByUsernameService
-        .search({ ...this.tempSearchData, ...this.paginationData })
-        .pipe(
-          tap(data => {
-            this.paginationData.currentAmount -= data.hits.length;
-          }),
-          finalize(() => this.isLoading$.next(false)),
-
-          shareReplay(1)
-        );
-
-      this.isNextPageAvaible = true;
-
-      if (this.paginationData.page === 1) this.isPreviousPageAvaible = false;
-
-      return;
-    }
-
-    this.isPreviousPageAvaible = false;
+    this.page = page;
   }
 }
