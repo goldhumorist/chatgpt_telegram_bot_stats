@@ -4,7 +4,7 @@ import { SearchRoutingEnum } from '../../enums';
 import { FullTextSearchService } from '../../../../features/search/api/full-text-seach.service';
 import { TFullTextSearchData } from './../../interfaces';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BehaviorSubject, Observable, finalize, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, Observable, finalize, shareReplay } from 'rxjs';
 
 @Component({
   selector: 'app-full-text',
@@ -17,15 +17,9 @@ export class FullTextComponent {
   readonly backRoute = AppRouteEnum.ToBack;
 
   searchResponse$!: Observable<IFullTextSearchResponse>;
-  paginationData = {
-    page: 1,
-    limit: 10,
-    totalAvaibleAmount: 0,
-    currentAmount: 0,
-  };
   tempSearchData!: TFullTextSearchData;
-  isPreviousPageAvaible = false;
-  isNextPageAvaible = true;
+  page = 1;
+  limit = 10;
   isLoading$ = new BehaviorSubject<boolean>(false);
 
   constructor(private fullTextSearchService: FullTextSearchService) {}
@@ -35,70 +29,22 @@ export class FullTextComponent {
     this.isLoading$.next(true);
 
     this.searchResponse$ = this.fullTextSearchService
-      .search({ ...this.tempSearchData, ...this.paginationData })
+      .search({ ...this.tempSearchData, page: this.page, limit: this.limit })
       .pipe(
-        tap(data => {
-          this.paginationData.totalAvaibleAmount = data.total.value;
-          this.paginationData.currentAmount += data.hits.length;
-        }),
         finalize(() => this.isLoading$.next(false)),
         shareReplay(1)
       );
   }
 
-  loadNextPage() {
-    if (
-      this.paginationData.totalAvaibleAmount > this.paginationData.currentAmount
-    ) {
-      this.isPreviousPageAvaible = true;
-      this.paginationData.page += 1;
-      this.isLoading$.next(true);
+  changePage(page: number) {
+    this.isLoading$.next(true);
+    this.searchResponse$ = this.fullTextSearchService
+      .search({ ...this.tempSearchData, page, limit: this.limit })
+      .pipe(
+        finalize(() => this.isLoading$.next(false)),
+        shareReplay(1)
+      );
 
-      this.searchResponse$ = this.fullTextSearchService
-        .search({ ...this.tempSearchData, ...this.paginationData })
-        .pipe(
-          tap(data => {
-            this.paginationData.currentAmount += data.hits.length;
-          }),
-          finalize(() => this.isLoading$.next(false)),
-
-          shareReplay(1)
-        );
-
-      if (
-        this.paginationData.totalAvaibleAmount <=
-        this.paginationData.currentAmount + this.paginationData.limit
-      )
-        this.isNextPageAvaible = false;
-
-      return;
-    }
-    this.isNextPageAvaible = false;
-  }
-
-  loadPreviousPage() {
-    if (this.paginationData.page > 1) {
-      this.paginationData.page -= 1;
-      this.isLoading$.next(true);
-
-      this.searchResponse$ = this.fullTextSearchService
-        .search({ ...this.tempSearchData, ...this.paginationData })
-        .pipe(
-          tap(data => {
-            this.paginationData.currentAmount -= data.hits.length;
-          }),
-          finalize(() => this.isLoading$.next(false)),
-
-          shareReplay(1)
-        );
-
-      this.isNextPageAvaible = true;
-
-      if (this.paginationData.page === 1) this.isPreviousPageAvaible = false;
-
-      return;
-    }
-
-    this.isPreviousPageAvaible = false;
+    this.page = page;
   }
 }

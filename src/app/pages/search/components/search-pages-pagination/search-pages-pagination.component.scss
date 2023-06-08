@@ -1,10 +1,33 @@
-.paggination-container {
-  @apply flex justify-end p-3;
-
-  .next-page-btn {
-    @apply bg-primary-btn-color p-1 rounded-lg mx-1;
-  }
-  .previous-page-btn {
-    @apply bg-primary-btn-color p-1 rounded-lg mx-1;
-  }
+.pagination {
+  @apply inline-block pl-0 mt-[1rem] rounded;
+}
+.page-item {
+  @apply inline;
+}
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-bottom-left-radius: 0.25rem;
+  border-top-left-radius: 0.25rem;
+}
+.page-item:last-child .page-link {
+  border-bottom-right-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.page-item.active .page-link,
+.page-item.active .page-link:focus,
+.page-item.active .page-link:hover {
+  @apply z-10 text-white cursor-default bg-primary-btn-color border-primary-btn-color;
+}
+.page-item.disabled .page-link,
+.page-item.disabled .page-link:focus,
+.page-item.disabled .page-link:hover {
+  @apply pointer-events-none cursor-not-allowed bg-white  border-gray-400;
+}
+.page-link {
+  @apply relative float-left py-2 px-3 ml-[-1] text-primary-btn-color bg-white border border-gray-400 cursor-pointer;
+  text-decoration: none;
+}
+.page-link:focus,
+.page-link:hover {
+  @apply text-primary-btn-color bg-gray-200 border-gray-400;
 }

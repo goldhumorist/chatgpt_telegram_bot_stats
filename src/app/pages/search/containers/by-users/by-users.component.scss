@@ -27,3 +27,7 @@
 .loading-container {
   @apply w-full h-full;
 }
+
+.paggination-container {
+  @apply flex justify-end;
+}
