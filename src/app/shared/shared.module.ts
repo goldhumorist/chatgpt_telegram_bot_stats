@@ -5,6 +5,7 @@ import {
   LoadingSpinerModule,
   PageTittleModule,
   CardLinkChooserModule,
+  PaginationModule,
 } from './components';
 
 @NgModule({
@@ -15,6 +16,7 @@ import {
     NavigationLinkModule,
     CardLinkChooserModule,
     LoadingSpinerModule,
+    PaginationModule,
   ],
 })
 export class SharedModule {}

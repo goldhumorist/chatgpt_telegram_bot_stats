@@ -8,12 +8,12 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-search-pages-pagination',
-  templateUrl: './search-pages-pagination.component.html',
-  styleUrls: ['./search-pages-pagination.component.scss'],
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchPagesPaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit {
   @Input() currentPage = 1;
   @Input() total = 0;
   @Input() limit = 20;

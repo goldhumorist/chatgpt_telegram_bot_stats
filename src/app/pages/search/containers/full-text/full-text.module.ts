@@ -5,7 +5,6 @@ import { FullTextRouting } from './full-text.routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FullTextComponent } from './full-text.component';
-import { SearchPagesPaginationModule } from '../../components';
 
 @NgModule({
   declarations: [FullTextComponent],
@@ -15,7 +14,6 @@ import { SearchPagesPaginationModule } from '../../components';
     FeaturesModule,
     SharedModule,
     MatProgressSpinnerModule,
-    SearchPagesPaginationModule,
   ],
 })
 export class FullTextModule {}

@@ -35,11 +35,11 @@
 
 <ng-container *ngIf="searchResponse$ | async as searchResponse">
   <div class="paggination-container">
-    <app-search-pages-pagination
+    <app-pagination
       [currentPage]="page"
       [limit]="limit"
       [total]="searchResponse.total.value"
-      (changePage)="changePage($event)"></app-search-pages-pagination>
+      (changePage)="changePage($event)"></app-pagination>
   </div>
 </ng-container>
 
