@@ -5,12 +5,16 @@
     @apply container m-auto flex justify-between py-3 px-4 text-xl;
 
     .header-link__container {
-      @apply pl-2 py-1 hover:bg-gray-700 bg-opacity-30
+      @apply pl-2 py-1 hover:bg-gray-600
         rounded-lg transition duration-300;
 
       .header-link-text {
         @apply mx-2;
       }
+    }
+    .active-link {
+      @apply pl-2 py-1 bg-gray-700 
+          rounded-lg transition duration-300;
     }
   }
 }
