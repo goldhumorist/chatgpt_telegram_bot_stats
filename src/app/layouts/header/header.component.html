@@ -1,20 +1,23 @@
 <header class="header">
   <div class="header-content__container">
-    <div class="header-link__container">
+    <div
+      class="header-link__container"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }">
       <a [routerLink]="appRouteEnum.Home">
         <fa-icon [icon]="faHome"></fa-icon>
         <span class="header-link-text">home</span>
       </a>
     </div>
 
-    <div class="header-link__container">
+    <div class="header-link__container" routerLinkActive="active-link">
       <a [routerLink]="appRouteEnum.Search">
         <fa-icon [icon]="faSearch"></fa-icon>
         <span class="header-link-text">searching</span>
       </a>
     </div>
 
-    <div class="header-link__container">
+    <div class="header-link__container" routerLinkActive="active-link">
       <a [routerLink]="appRouteEnum.Statistic">
         <fa-icon [icon]="faChartBar"></fa-icon>
         <span class="header-link-text">statistic</span>
