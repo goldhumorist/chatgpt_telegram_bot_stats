@@ -1,0 +1,8 @@
+.card-links__container {
+  @apply flex justify-center py-9;
+
+  .card-link__container {
+    @apply w-1/4 px-2;
+    height: 40vh;
+  }
+}

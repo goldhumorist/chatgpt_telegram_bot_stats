@@ -1,1 +1,12 @@
-<p>index-statistic works!</p>
+<app-page-tittle
+  title="Here you can see the charts, diagrams, graphs and collect statistic of usage chat-bot app"
+  subTitle="Please, choose what you want"></app-page-tittle>
+
+<div class="card-links__container">
+  <ng-container *ngFor="let statsSubPages of statisticSubPages">
+    <div class="card-link__container">
+      <app-card-link-chooser
+        [subPageOptions]="statsSubPages"></app-card-link-chooser>
+    </div>
+  </ng-container>
+</div>
