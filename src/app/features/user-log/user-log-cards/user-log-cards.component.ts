@@ -8,6 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserLogCardsComponent {
-  @Input()
-  userLogs!: IUserLog[];
+  @Input() userLogs!: IUserLog[];
 }

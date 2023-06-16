@@ -16,11 +16,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnInit {
-  @Input()
-  searchFormOptions!: ISearchFormOptions;
-
-  @Input()
-  isFullTextSearch!: boolean;
+  @Input() searchFormOptions!: ISearchFormOptions;
 
   @Output()
   searchFormEmitter: EventEmitter<ISearchFormData> = new EventEmitter();
@@ -32,7 +28,7 @@ export class SearchFormComponent implements OnInit {
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       searchWord: ['', [Validators.required, Validators.minLength(2)]],
-      searchIn: this.isFullTextSearch
+      searchIn: this.searchFormOptions.isFullTextSearchForm
         ? ['question', Validators.required]
         : null,
       dateFrom: null,

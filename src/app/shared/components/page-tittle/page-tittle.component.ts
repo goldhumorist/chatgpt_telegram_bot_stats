@@ -7,9 +7,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTittleComponent {
-  @Input()
-  title!: string;
+  @Input() title!: string;
 
-  @Input()
-  subTitle!: string;
+  @Input() subTitle!: string;
 }

@@ -4,14 +4,20 @@
 
 <div class="managing-container">
   <app-navigation-link
-    [isLeftArrow]="true"
-    title="GO BACK"
-    [link]="backRoute"></app-navigation-link>
+    [navigationLinkOptions]="{
+      title: 'GO BACK',
+      navigateTo:'backRoute',
+      isLeftArrow:true,
+    }">
+  </app-navigation-link>
 
   <app-navigation-link
-    [isLeftArrow]="false"
-    title="GO NEXT"
-    link="/search/full-text"></app-navigation-link>
+    [navigationLinkOptions]="{
+    title: 'GO NEXT',
+    navigateTo:'/search/full-text',
+    isLeftArrow:false,
+  }">
+  </app-navigation-link>
 </div>
 
 <div class="main-content__container">
@@ -19,9 +25,9 @@
     <app-search-form
       [searchFormOptions]="{
         title: 'Searcxh by username',
-        titlePlaceholder: 'Enter username to find logs'
+        titlePlaceholder: 'Enter username to find logs',
+        isFullTextSearchForm: false
       }"
-      [isFullTextSearch]="false"
       (searchFormEmitter)="onSearchSubmit($event)"></app-search-form>
   </div>
 
@@ -36,9 +42,11 @@
 <ng-container *ngIf="searchResponse$ | async as searchResponse">
   <div class="paggination-container">
     <app-pagination
-      [currentPage]="page"
-      [limit]="limit"
-      [total]="searchResponse.total.value"
+      [paginationOptions]="{
+        currentPage: page,
+        limit: limit,
+        total: searchResponse.total.value
+      }"
       (changePage)="changePage($event)"></app-pagination>
   </div>
 </ng-container>
@@ -46,7 +54,8 @@
 <ng-template #noSearchResult>
   <ng-container *ngIf="isLoading$ | async; else greetingText">
     <div class="loading-container">
-      <app-loading-spiner spinerSize="60"></app-loading-spiner>
+      <app-loading-spiner
+        [spinerOptions]="{ spinerSize: '60' }"></app-loading-spiner>
     </div>
   </ng-container>
 </ng-template>

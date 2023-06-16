@@ -1,5 +1,5 @@
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ILoadingSpinerOptions } from '../../interfaces';
 
 @Component({
   selector: 'app-loading-spiner',
@@ -8,9 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingSpinerComponent {
-  @Input()
-  spinerSize!: string;
-
-  @Input()
-  spinerMode: ProgressSpinnerMode = 'indeterminate';
+  @Input() spinerOptions!: ILoadingSpinerOptions;
 }

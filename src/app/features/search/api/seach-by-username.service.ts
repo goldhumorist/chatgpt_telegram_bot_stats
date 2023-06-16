@@ -17,8 +17,6 @@ export class SearchByUsernameService {
   search(data: TFullTextSearchData): Observable<ISearchByUsernameResponse> {
     const { searchWord, page, limit, dateFrom, dateTo } = data;
 
-    console.log('SearchByUsernameService', data);
-
     let params = new HttpParams()
       .set('username', searchWord)
       .set('page', page || 1)
