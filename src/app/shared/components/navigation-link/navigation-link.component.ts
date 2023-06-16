@@ -1,3 +1,4 @@
+import { INavigationLinkOptions } from './../../interfaces';
 import { Location } from '@angular/common';
 import { AppRouteEnum } from './../../../core/enums/app-routes';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
@@ -19,17 +20,11 @@ export class NavigationLinkComponent {
 
   constructor(private router: Router, private location: Location) {}
 
-  @Input()
-  isLeftArrow!: boolean;
-
-  @Input()
-  title!: string;
-
-  @Input()
-  link!: string;
+  @Input() navigationLinkOptions!: INavigationLinkOptions;
 
   onClick() {
-    if (this.link === AppRouteEnum.ToBack) this.location.back();
-    else this.router.navigate([this.link]);
+    if (this.navigationLinkOptions.navigateTo === AppRouteEnum.ToBack)
+      this.location.back();
+    else this.router.navigate([this.navigationLinkOptions.navigateTo]);
   }
 }

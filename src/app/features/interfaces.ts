@@ -9,6 +9,7 @@ export interface ISubPageOptions {
 export interface ISearchFormOptions {
   title: string;
   titlePlaceholder: string;
+  isFullTextSearchForm: boolean;
 }
 
 export interface ISearchFormData {

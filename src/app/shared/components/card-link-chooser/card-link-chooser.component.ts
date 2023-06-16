@@ -8,6 +8,5 @@ import { ISubPageOptions } from '../../../features/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardLinkChooserComponent {
-  @Input()
-  subPageOptions!: ISubPageOptions;
+  @Input() subPageOptions!: ISubPageOptions;
 }
