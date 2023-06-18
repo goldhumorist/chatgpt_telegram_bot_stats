@@ -70,6 +70,25 @@ export interface IFullTextSearchResponse {
   suggestions: Array<ISuggestions>;
 }
 
+export interface IUsersActivityStatHTTPResponse {
+  status: number;
+  data: {
+    numberOfRemainingUsers: number;
+    usersActivity: Array<{
+      doc_count: number;
+      key: string;
+    }>;
+  };
+}
+
+export interface IUsersActivityStatResponse {
+  numberOfRemainingUsers: number;
+  usersActivity: Array<{
+    doc_count: number;
+    key: string;
+  }>;
+}
+
 export interface ISearchByUsernameResponse {
   total: {
     value: number;

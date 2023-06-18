@@ -1,0 +1,27 @@
+.managing-container {
+  @apply flex justify-between;
+}
+
+.main-content__container {
+  @apply flex h-full;
+
+  .form__container {
+    @apply w-[23vw] bg-white;
+  }
+
+  .charts-wrapper {
+    @apply w-[60vw] h-[60vh] m-auto;
+
+    .chart-wrapper {
+      @apply w-full h-full bg-white;
+    }
+  }
+}
+
+.emty-response {
+  @apply text-2xl text-center;
+}
+
+.loading-container {
+  @apply w-full h-full;
+}
