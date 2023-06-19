@@ -1,9 +1,12 @@
+import { UsersActivityService } from '../../../../features/statistic/';
 import { Observable, map, BehaviorSubject, finalize } from 'rxjs';
-import { UsersActivityService } from './../../../../features/search/api/users-activity.service';
 import { AppRouteEnum } from './../../../../core/enums/app-routes';
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
-import { IUserActivityDataForBarChart } from '../../interfaces';
+import {
+  IUserActivityDataForBarChart,
+  IUsersActivityReqData,
+} from '../../interfaces';
 
 @Component({
   selector: 'app-users-activity',
@@ -27,23 +30,28 @@ export class UsersActivityComponent implements OnInit {
   isLoading$ = new BehaviorSubject<boolean>(false);
 
   ngOnInit(): void {
+    this.userActivityStats$ = this.getUsersActivityStats({});
+  }
+
+  onFormSubmit(data: IUsersActivityReqData) {
+    this.userActivityStats$ = this.getUsersActivityStats(data);
+  }
+
+  private getUsersActivityStats(data: IUsersActivityReqData) {
     this.isLoading$.next(true);
+    return this.usersActivityService.getUsersActivityStats(data).pipe(
+      map(data => {
+        const chartLabels = data.usersActivity.map(item => item.key);
 
-    this.userActivityStats$ = this.usersActivityService
-      .getUsersActivityStats({})
-      .pipe(
-        map(data => {
-          const chartLabels = data.usersActivity.map(item => item.key);
-
-          const chartDatasets = [
-            {
-              data: data.usersActivity.map(item => item.doc_count),
-              label: 'Users Activity',
-            },
-          ];
-          return { chartLabels, chartDatasets };
-        }),
-        finalize(() => this.isLoading$.next(false))
-      );
+        const chartDatasets = [
+          {
+            data: data.usersActivity.map(item => item.doc_count),
+            label: 'Users Activity',
+          },
+        ];
+        return { chartLabels, chartDatasets };
+      }),
+      finalize(() => this.isLoading$.next(false))
+    );
   }
 }
