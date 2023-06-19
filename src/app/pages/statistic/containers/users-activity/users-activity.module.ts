@@ -1,3 +1,4 @@
+import { StatisticFormModule } from './../../../../features/statistic/';
 import { SharedModule } from './../../../../shared/shared.module';
 import { UsersActivityRouting } from './users-activity.routing';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,12 @@ import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [UsersActivityComponent],
-  imports: [CommonModule, UsersActivityRouting, SharedModule, NgChartsModule],
+  imports: [
+    CommonModule,
+    UsersActivityRouting,
+    SharedModule,
+    NgChartsModule,
+    StatisticFormModule,
+  ],
 })
 export class UsersActivityModule {}

@@ -19,8 +19,10 @@
 </div>
 
 <div class="main-content__container">
-  <!-- TODO -->
-  <div class="form__container"></div>
+  <div class="form__container">
+    <app-statistic-form
+      (statsFormEmitter)="onFormSubmit($event)"></app-statistic-form>
+  </div>
 
   <div class="charts-wrapper">
     <ng-container
@@ -43,13 +45,15 @@
   </div>
 </div>
 
-<ng-template #emtyResponse>
-  <div class="emty-response">We are sorry, there is no statistic :(</div>
+<ng-template #loading>
+  <ng-container *ngIf="isLoading$ | async as isLoading; else emtyResponse">
+    <div class="loading-container">
+      <app-loading-spiner
+        [spinerOptions]="{ spinerSize: '60' }"></app-loading-spiner>
+    </div>
+  </ng-container>
 </ng-template>
 
-<ng-template #loading>
-  <div class="loading-container">
-    <app-loading-spiner
-      [spinerOptions]="{ spinerSize: '60' }"></app-loading-spiner>
-  </div>
+<ng-template #emtyResponse>
+  <div class="emty-response">We are sorry, there is no statistic :(</div>
 </ng-template>

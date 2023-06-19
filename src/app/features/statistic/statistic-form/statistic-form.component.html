@@ -1,0 +1,18 @@
+<form class="form" [formGroup]="statisticForm" (ngSubmit)="onSubmit()">
+  <p class="form-title">
+    Find Users activity statistic for specific time period
+  </p>
+  <div class="field">
+    <label class="label">Date from</label>
+    <input type="date" formControlName="dateFrom" />
+  </div>
+
+  <div class="field">
+    <label class="label">Date To</label>
+    <input type="date" formControlName="dateTo" />
+  </div>
+
+  <div class="submit-button__container">
+    <button [disabled]="!isFormValid()" class="submit-button">SEARCH</button>
+  </div>
+</form>
