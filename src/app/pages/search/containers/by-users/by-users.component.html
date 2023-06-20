@@ -33,9 +33,12 @@
 
   <ng-container
     *ngIf="searchResponse$ | async as searchResponse; else noSearchResult">
-    <div>
-      <app-user-log-cards [userLogs]="searchResponse.hits"></app-user-log-cards>
-    </div>
+    <ng-container *ngIf="searchResponse.total.value; else emptySearchResult">
+      <div>
+        <app-user-log-cards
+          [userLogs]="searchResponse.hits"></app-user-log-cards>
+      </div>
+    </ng-container>
   </ng-container>
 </div>
 
@@ -63,5 +66,11 @@
 <ng-template #greetingText>
   <div class="empty-search-result-title">
     To see results, please, use the search form
+  </div>
+</ng-template>
+
+<ng-template #emptySearchResult>
+  <div class="empty-search-result-title">
+    There is no information with your filters :(
   </div>
 </ng-template>
