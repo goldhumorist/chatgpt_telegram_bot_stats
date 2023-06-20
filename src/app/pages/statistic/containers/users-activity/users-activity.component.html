@@ -26,7 +26,7 @@
 
   <div class="charts-wrapper">
     <ng-container
-      *ngIf="userActivityStats$ | async as userActivityStats; else loading">
+      *ngIf="userActivityStats$ | async as userActivityStats; else noData">
       <ng-container
         *ngIf="userActivityStats.chartLabels.length; else emtyResponse">
         <div class="chart-wrapper">
@@ -45,7 +45,7 @@
   </div>
 </div>
 
-<ng-template #loading>
+<ng-template #noData>
   <ng-container *ngIf="isLoading$ | async as isLoading; else emtyResponse">
     <div class="loading-container">
       <app-loading-spiner

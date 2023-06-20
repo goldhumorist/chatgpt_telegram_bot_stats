@@ -1,7 +1,7 @@
 import { TFullTextSearchData } from '../../../pages/search/interfaces';
 import { BaseApiService } from '../../../core/services/base-api.service';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { EMPTY, Observable, catchError, map } from 'rxjs';
 import {
   IFullTextHTTPResponse,
   IFullTextSearchResponse,
@@ -13,6 +13,7 @@ import { HttpParams } from '@angular/common/http';
 })
 export class FullTextSearchService {
   constructor(private baseApiService: BaseApiService) {}
+  private LOG_ALIAS = 'Full-Text-Search-Service';
 
   search(data: TFullTextSearchData): Observable<IFullTextSearchResponse> {
     const { searchWord, searchIn, page, limit, dateFrom, dateTo } = data;
@@ -32,6 +33,12 @@ export class FullTextSearchService {
       .get<IFullTextHTTPResponse>('/api/v1/search/full-text', {
         params,
       })
-      .pipe(map(response => response.data));
+      .pipe(
+        map(response => response.data),
+        catchError(error => {
+          console.log(`${this.LOG_ALIAS} - error during search`, error);
+          return EMPTY;
+        })
+      );
   }
 }
