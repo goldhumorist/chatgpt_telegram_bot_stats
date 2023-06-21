@@ -34,13 +34,53 @@
             baseChart
             [datasets]="userActivityStats.chartDatasets"
             [labels]="userActivityStats.chartLabels"
-            [options]="chartOptions"
-            [plugins]="chartPlugins"
-            [legend]="chartLegend"
-            [type]="chartType">
+            [options]="barChartData.chartOptions"
+            [legend]="barChartData.chartLegend"
+            [type]="barChartData.chartType">
           </canvas>
         </div>
       </ng-container>
+    </ng-container>
+
+    <div class="chart-wrapper_line">
+      <ng-container *ngIf="userActivityStats$ | async as userActivityStats">
+        <div class="chart-wrapper__doughnut">
+          <canvas
+            baseChart
+            [datasets]="userActivityStats.chartDatasets"
+            [labels]="userActivityStats.chartLabels"
+            [options]="doughnutChartData.chartOptions"
+            [legend]="doughnutChartData.chartLegend"
+            [type]="doughnutChartData.chartType">
+          </canvas>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="userActivityStats$ | async as userActivityStats">
+        <div class="chart-wrapper__radar">
+          <canvas
+            baseChart
+            [datasets]="userActivityStats.chartDatasets"
+            [labels]="userActivityStats.chartLabels"
+            [options]="radarChartData.chartOptions"
+            [legend]="radarChartData.chartLegend"
+            [type]="radarChartData.chartType">
+          </canvas>
+        </div>
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf="userActivityStats$ | async as userActivityStats">
+      <div class="chart-wrapper__line">
+        <canvas
+          baseChart
+          [datasets]="userActivityStats.chartDatasets"
+          [labels]="userActivityStats.chartLabels"
+          [options]="lineChartData.chartOptions"
+          [legend]="lineChartData.chartLegend"
+          [type]="lineChartData.chartType">
+        </canvas>
+      </div>
     </ng-container>
   </div>
 </div>

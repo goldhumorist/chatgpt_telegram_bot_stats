@@ -10,10 +10,24 @@
   }
 
   .charts-wrapper {
-    @apply w-[60vw] h-[60vh] m-auto;
-
+    @apply w-full h-full flex flex-col justify-center items-center;
     .chart-wrapper {
-      @apply w-full h-full bg-white;
+      @apply w-full h-full bg-white w-[60vw] m-3;
+    }
+
+    .chart-wrapper_line {
+      @apply flex;
+
+      .chart-wrapper__doughnut {
+        @apply w-full h-full bg-white rounded-md w-[30vw] m-3;
+      }
+      .chart-wrapper__radar {
+        @apply w-full h-full bg-white rounded-md w-[30vw] m-3;
+      }
+    }
+
+    .chart-wrapper__line {
+      @apply w-full h-full bg-white rounded-md w-[60vw] m-3;
     }
   }
 }

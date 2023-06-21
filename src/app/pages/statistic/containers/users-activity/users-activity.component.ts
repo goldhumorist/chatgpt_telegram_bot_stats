@@ -2,8 +2,8 @@ import { UsersActivityService } from '../../../../features/statistic/';
 import { Observable, map, BehaviorSubject, finalize } from 'rxjs';
 import { AppRouteEnum } from './../../../../core/enums/app-routes';
 import { Component, OnInit } from '@angular/core';
-import { ChartOptions, ChartType } from 'chart.js';
 import {
+  IChartData,
   IUserActivityDataForBarChart,
   IUsersActivityReqData,
 } from '../../interfaces';
@@ -20,12 +20,37 @@ export class UsersActivityComponent implements OnInit {
 
   userActivityStats$!: Observable<IUserActivityDataForBarChart>;
 
-  chartOptions: ChartOptions = {
-    responsive: true,
+  barChartData: IChartData = {
+    chartOptions: {
+      responsive: true,
+    },
+    chartType: 'bar',
+    chartLegend: true,
   };
-  chartType: ChartType = 'bar';
-  chartLegend = true;
-  chartPlugins = [];
+
+  doughnutChartData: IChartData = {
+    chartOptions: {
+      responsive: true,
+    },
+    chartType: 'doughnut',
+    chartLegend: true,
+  };
+
+  radarChartData: IChartData = {
+    chartOptions: {
+      responsive: true,
+    },
+    chartType: 'radar',
+    chartLegend: true,
+  };
+
+  lineChartData: IChartData = {
+    chartOptions: {
+      responsive: true,
+    },
+    chartType: 'line',
+    chartLegend: true,
+  };
 
   isLoading$ = new BehaviorSubject<boolean>(false);
 
