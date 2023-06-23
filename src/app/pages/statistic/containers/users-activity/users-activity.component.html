@@ -24,12 +24,48 @@
       (statsFormEmitter)="onFormSubmit($event)"></app-statistic-form>
   </div>
 
-  <div class="charts-wrapper">
+  <div class="chart_checkbox-container">
+    <fieldset>
+      <legend>Select what charts would you like to see</legend>
+      <div class="checkbox_container">
+        <div>
+          <input type="checkbox" id="bar" name="bar" [(ngModel)]="isBarChart" />
+          <label for="bar">Bar-chart</label>
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            id="doughnut"
+            name="doughnut"
+            [(ngModel)]="isDoughnutChart" />
+          <label for="doughnut">Doughnut-chart</label>
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            id="radar"
+            name="radar"
+            [(ngModel)]="isRadarChart" />
+          <label for="radar">Radar-chart</label>
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            id="line"
+            name="line"
+            [(ngModel)]="isLineChart" />
+          <label for="line">Line-chart</label>
+        </div>
+      </div>
+    </fieldset>
+
     <ng-container
       *ngIf="userActivityStats$ | async as userActivityStats; else noData">
-      <ng-container
-        *ngIf="userActivityStats.chartLabels.length; else emtyResponse">
-        <div class="chart-wrapper">
+      <div class="charts-wrapper">
+        <div class="chart-wrapper__bar" *ngIf="isBarChart">
           <canvas
             baseChart
             [datasets]="userActivityStats.chartDatasets"
@@ -39,47 +75,41 @@
             [type]="barChartData.chartType">
           </canvas>
         </div>
-      </ng-container>
-    </ng-container>
 
-    <div class="chart-wrapper_line">
-      <ng-container *ngIf="userActivityStats$ | async as userActivityStats">
-        <div class="chart-wrapper__doughnut">
+        <div class="chart-wrapper_line">
+          <div class="chart-wrapper__doughnut" *ngIf="isDoughnutChart">
+            <canvas
+              baseChart
+              [datasets]="userActivityStats.chartDatasets"
+              [labels]="userActivityStats.chartLabels"
+              [options]="doughnutChartData.chartOptions"
+              [legend]="doughnutChartData.chartLegend"
+              [type]="doughnutChartData.chartType">
+            </canvas>
+          </div>
+
+          <div class="chart-wrapper__radar" *ngIf="isRadarChart">
+            <canvas
+              baseChart
+              [datasets]="userActivityStats.chartDatasets"
+              [labels]="userActivityStats.chartLabels"
+              [options]="radarChartData.chartOptions"
+              [legend]="radarChartData.chartLegend"
+              [type]="radarChartData.chartType">
+            </canvas>
+          </div>
+        </div>
+
+        <div class="chart-wrapper__line" *ngIf="isLineChart">
           <canvas
             baseChart
             [datasets]="userActivityStats.chartDatasets"
             [labels]="userActivityStats.chartLabels"
-            [options]="doughnutChartData.chartOptions"
-            [legend]="doughnutChartData.chartLegend"
-            [type]="doughnutChartData.chartType">
+            [options]="lineChartData.chartOptions"
+            [legend]="lineChartData.chartLegend"
+            [type]="lineChartData.chartType">
           </canvas>
         </div>
-      </ng-container>
-
-      <ng-container *ngIf="userActivityStats$ | async as userActivityStats">
-        <div class="chart-wrapper__radar">
-          <canvas
-            baseChart
-            [datasets]="userActivityStats.chartDatasets"
-            [labels]="userActivityStats.chartLabels"
-            [options]="radarChartData.chartOptions"
-            [legend]="radarChartData.chartLegend"
-            [type]="radarChartData.chartType">
-          </canvas>
-        </div>
-      </ng-container>
-    </div>
-
-    <ng-container *ngIf="userActivityStats$ | async as userActivityStats">
-      <div class="chart-wrapper__line">
-        <canvas
-          baseChart
-          [datasets]="userActivityStats.chartDatasets"
-          [labels]="userActivityStats.chartLabels"
-          [options]="lineChartData.chartOptions"
-          [legend]="lineChartData.chartLegend"
-          [type]="lineChartData.chartType">
-        </canvas>
       </div>
     </ng-container>
   </div>
