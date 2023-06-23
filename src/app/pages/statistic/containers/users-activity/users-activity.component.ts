@@ -53,6 +53,11 @@ export class UsersActivityComponent implements OnInit {
     chartLegend: true,
   };
 
+  isBarChart = true;
+  isDoughnutChart = false;
+  isRadarChart = false;
+  isLineChart = false;
+
   isLoading$ = new BehaviorSubject<boolean>(false);
 
   ngOnInit(): void {
