@@ -1,7 +1,7 @@
 import { UsersActivityService } from '../../../../features/statistic/';
 import { Observable, map, BehaviorSubject, finalize } from 'rxjs';
 import { AppRouteEnum } from './../../../../core/enums/app-routes';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   IChartData,
   IUserActivityDataForBarChart,
@@ -12,6 +12,7 @@ import {
   selector: 'app-users-activity',
   templateUrl: './users-activity.component.html',
   styleUrls: ['./users-activity.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersActivityComponent implements OnInit {
   readonly backRoute = AppRouteEnum.ToBack;
