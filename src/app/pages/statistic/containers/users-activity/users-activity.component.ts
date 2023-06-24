@@ -1,8 +1,10 @@
+import { UsersActivityChartsService } from './../../../../features/statistic/api';
 import { UsersActivityService } from '../../../../features/statistic/';
 import { Observable, map, BehaviorSubject, finalize } from 'rxjs';
 import { AppRouteEnum } from './../../../../core/enums/app-routes';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
+  IChartCheckBoxOption,
   IChartData,
   IUserActivityDataForBarChart,
   IUsersActivityReqData,
@@ -17,46 +19,18 @@ import {
 export class UsersActivityComponent implements OnInit {
   readonly backRoute = AppRouteEnum.ToBack;
 
-  constructor(private usersActivityService: UsersActivityService) {}
+  constructor(
+    private usersActivityService: UsersActivityService,
+    private usersActivityChartsService: UsersActivityChartsService
+  ) {}
 
   userActivityStats$!: Observable<IUserActivityDataForBarChart>;
 
-  barChartData: IChartData = {
-    chartOptions: {
-      responsive: true,
-    },
-    chartType: 'bar',
-    chartLegend: true,
-  };
+  availableCharts: Array<IChartData> =
+    this.usersActivityChartsService.getAvailableCharts();
 
-  doughnutChartData: IChartData = {
-    chartOptions: {
-      responsive: true,
-    },
-    chartType: 'doughnut',
-    chartLegend: true,
-  };
-
-  radarChartData: IChartData = {
-    chartOptions: {
-      responsive: true,
-    },
-    chartType: 'radar',
-    chartLegend: true,
-  };
-
-  lineChartData: IChartData = {
-    chartOptions: {
-      responsive: true,
-    },
-    chartType: 'line',
-    chartLegend: true,
-  };
-
-  isBarChart = true;
-  isDoughnutChart = false;
-  isRadarChart = false;
-  isLineChart = false;
+  chartCheckBoxOptions: Array<IChartCheckBoxOption> =
+    this.usersActivityChartsService.getChartCheckBoxOptions();
 
   isLoading$ = new BehaviorSubject<boolean>(false);
 
@@ -66,6 +40,13 @@ export class UsersActivityComponent implements OnInit {
 
   onFormSubmit(data: IUsersActivityReqData) {
     this.userActivityStats$ = this.getUsersActivityStats(data);
+  }
+
+  updateChartVisibility(chartType: string, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    this.usersActivityChartsService.updateChartVisibility(chartType, isChecked);
+    this.availableCharts = this.usersActivityChartsService.getAvailableCharts();
   }
 
   private getUsersActivityStats(data: IUsersActivityReqData) {

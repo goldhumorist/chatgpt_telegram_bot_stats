@@ -28,88 +28,37 @@
     <fieldset>
       <legend>Select what charts would you like to see</legend>
       <div class="checkbox_container">
-        <div>
-          <input type="checkbox" id="bar" name="bar" [(ngModel)]="isBarChart" />
-          <label for="bar">Bar-chart</label>
-        </div>
-
-        <div>
-          <input
-            type="checkbox"
-            id="doughnut"
-            name="doughnut"
-            [(ngModel)]="isDoughnutChart" />
-          <label for="doughnut">Doughnut-chart</label>
-        </div>
-
-        <div>
-          <input
-            type="checkbox"
-            id="radar"
-            name="radar"
-            [(ngModel)]="isRadarChart" />
-          <label for="radar">Radar-chart</label>
-        </div>
-
-        <div>
-          <input
-            type="checkbox"
-            id="line"
-            name="line"
-            [(ngModel)]="isLineChart" />
-          <label for="line">Line-chart</label>
-        </div>
+        <ng-container *ngFor="let checkBox of chartCheckBoxOptions">
+          <div>
+            <input
+              type="checkbox"
+              [id]="checkBox.id"
+              (change)="updateChartVisibility(checkBox.chartType, $event)"
+              [checked]="checkBox.isVisibleByDefaut" />
+            <label [for]="checkBox.id">{{ checkBox.label }}</label>
+          </div>
+        </ng-container>
       </div>
     </fieldset>
 
     <ng-container
       *ngIf="userActivityStats$ | async as userActivityStats; else noData">
       <div class="charts-wrapper">
-        <div class="chart-wrapper__bar" *ngIf="isBarChart">
-          <canvas
-            baseChart
-            [datasets]="userActivityStats.chartDatasets"
-            [labels]="userActivityStats.chartLabels"
-            [options]="barChartData.chartOptions"
-            [legend]="barChartData.chartLegend"
-            [type]="barChartData.chartType">
-          </canvas>
-        </div>
-
-        <div class="chart-wrapper_line">
-          <div class="chart-wrapper__doughnut" *ngIf="isDoughnutChart">
+        <ng-container *ngFor="let availableChart of availableCharts">
+          <div
+            [ngClass]="{
+             'chart-wrapper__wide': availableChart.isWideChart ,
+             'chart-wrapper__slim': !availableChart.isWideChart,}">
             <canvas
               baseChart
               [datasets]="userActivityStats.chartDatasets"
               [labels]="userActivityStats.chartLabels"
-              [options]="doughnutChartData.chartOptions"
-              [legend]="doughnutChartData.chartLegend"
-              [type]="doughnutChartData.chartType">
+              [options]="availableChart.chartOptions"
+              [legend]="availableChart.chartLegend"
+              [type]="availableChart.chartType">
             </canvas>
           </div>
-
-          <div class="chart-wrapper__radar" *ngIf="isRadarChart">
-            <canvas
-              baseChart
-              [datasets]="userActivityStats.chartDatasets"
-              [labels]="userActivityStats.chartLabels"
-              [options]="radarChartData.chartOptions"
-              [legend]="radarChartData.chartLegend"
-              [type]="radarChartData.chartType">
-            </canvas>
-          </div>
-        </div>
-
-        <div class="chart-wrapper__line" *ngIf="isLineChart">
-          <canvas
-            baseChart
-            [datasets]="userActivityStats.chartDatasets"
-            [labels]="userActivityStats.chartLabels"
-            [options]="lineChartData.chartOptions"
-            [legend]="lineChartData.chartLegend"
-            [type]="lineChartData.chartType">
-          </canvas>
-        </div>
+        </ng-container>
       </div>
     </ng-container>
   </div>

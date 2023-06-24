@@ -14,4 +14,12 @@ export interface IChartData {
   chartOptions: ChartOptions;
   chartType: ChartType;
   chartLegend: boolean;
+  isWideChart?: boolean;
+}
+
+export interface IChartCheckBoxOption {
+  id: string;
+  label: string;
+  chartType: string;
+  isVisibleByDefaut: boolean;
 }
