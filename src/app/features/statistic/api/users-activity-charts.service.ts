@@ -10,36 +10,36 @@ import { Injectable } from '@angular/core';
 export class UsersActivityChartsService {
   private readonly availableCharts: Array<IChartData> = [
     {
-      chartOptions: {
+      options: {
         responsive: true,
       },
-      chartType: 'bar',
-      chartLegend: true,
-      isWideChart: true,
+      type: 'bar',
+      legend: true,
+      isWide: true,
     },
     {
-      chartOptions: {
+      options: {
         responsive: true,
       },
-      chartType: 'doughnut',
-      chartLegend: true,
-      isWideChart: false,
+      type: 'doughnut',
+      legend: true,
+      isWide: false,
     },
     {
-      chartOptions: {
+      options: {
         responsive: true,
       },
-      chartType: 'radar',
-      chartLegend: true,
-      isWideChart: false,
+      type: 'radar',
+      legend: true,
+      isWide: false,
     },
     {
-      chartOptions: {
+      options: {
         responsive: true,
       },
-      chartType: 'line',
-      chartLegend: true,
-      isWideChart: true,
+      type: 'line',
+      legend: true,
+      isWide: true,
     },
   ];
 
@@ -52,38 +52,38 @@ export class UsersActivityChartsService {
 
   private chartCheckBoxOptions: Array<IChartCheckBoxOption> = [
     {
-      chartType: 'bar',
+      type: 'bar',
       id: 'bar',
       label: 'Bar-chart',
       isVisibleByDefaut: true,
     },
     {
-      chartType: 'doughnut',
+      type: 'doughnut',
       id: 'doughnut',
       label: 'Doughnut-chart',
       isVisibleByDefaut: false,
     },
     {
-      chartType: 'radar',
+      type: 'radar',
       id: 'radar',
       label: 'Radar-chart',
       isVisibleByDefaut: false,
     },
     {
-      chartType: 'line',
+      type: 'line',
       id: 'line',
       label: 'Line-chart',
       isVisibleByDefaut: false,
     },
   ];
 
-  updateChartVisibility(chartType: string, isChecked: boolean) {
-    this.chartVisibility[chartType] = isChecked;
+  updateChartVisibility(type: string, isChecked: boolean) {
+    this.chartVisibility[type] = isChecked;
   }
 
   getAvailableCharts() {
     return this.availableCharts.filter(
-      chart => this.chartVisibility[chart.chartType]
+      chart => this.chartVisibility[chart.type]
     );
   }
 

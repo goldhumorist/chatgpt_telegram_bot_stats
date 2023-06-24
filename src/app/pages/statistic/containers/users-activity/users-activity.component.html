@@ -33,7 +33,7 @@
             <input
               type="checkbox"
               [id]="checkBox.id"
-              (change)="updateChartVisibility(checkBox.chartType, $event)"
+              (change)="updateChartVisibility(checkBox.type, $event)"
               [checked]="checkBox.isVisibleByDefaut" />
             <label [for]="checkBox.id">{{ checkBox.label }}</label>
           </div>
@@ -44,18 +44,18 @@
     <ng-container
       *ngIf="userActivityStats$ | async as userActivityStats; else noData">
       <div class="charts-wrapper">
-        <ng-container *ngFor="let availableChart of availableCharts">
+        <ng-container *ngFor="let chart of availableCharts">
           <div
             [ngClass]="{
-             'chart-wrapper__wide': availableChart.isWideChart ,
-             'chart-wrapper__slim': !availableChart.isWideChart,}">
+             'chart-wrapper__wide': chart.isWide ,
+             'chart-wrapper__slim': !chart.isWide,}">
             <canvas
               baseChart
-              [datasets]="userActivityStats.chartDatasets"
-              [labels]="userActivityStats.chartLabels"
-              [options]="availableChart.chartOptions"
-              [legend]="availableChart.chartLegend"
-              [type]="availableChart.chartType">
+              [datasets]="userActivityStats.datasets"
+              [labels]="userActivityStats.labels"
+              [options]="chart.options"
+              [legend]="chart.legend"
+              [type]="chart.type">
             </canvas>
           </div>
         </ng-container>

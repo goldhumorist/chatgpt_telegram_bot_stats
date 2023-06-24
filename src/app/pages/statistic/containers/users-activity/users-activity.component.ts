@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   IChartCheckBoxOption,
   IChartData,
-  IUserActivityDataForBarChart,
+  IUserActivityChartData,
   IUsersActivityReqData,
 } from '../../interfaces';
 
@@ -24,7 +24,7 @@ export class UsersActivityComponent implements OnInit {
     private usersActivityChartsService: UsersActivityChartsService
   ) {}
 
-  userActivityStats$!: Observable<IUserActivityDataForBarChart>;
+  userActivityStats$!: Observable<IUserActivityChartData>;
 
   availableCharts: Array<IChartData> =
     this.usersActivityChartsService.getAvailableCharts();
@@ -53,15 +53,15 @@ export class UsersActivityComponent implements OnInit {
     this.isLoading$.next(true);
     return this.usersActivityService.getUsersActivityStats(data).pipe(
       map(data => {
-        const chartLabels = data.usersActivity.map(item => item.key);
+        const labels = data.usersActivity.map(item => item.key);
 
-        const chartDatasets = [
+        const datasets = [
           {
             data: data.usersActivity.map(item => item.doc_count),
             label: 'Users Activity',
           },
         ];
-        return { chartLabels, chartDatasets };
+        return { labels, datasets };
       }),
       finalize(() => this.isLoading$.next(false))
     );
