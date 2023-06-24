@@ -5,13 +5,21 @@ export interface IUsersActivityReqData {
   dateTo?: Date;
 }
 
-export interface IUserActivityDataForBarChart {
-  chartLabels: string[];
-  chartDatasets: Array<{ label: string; data: number[] }>;
+export interface IUserActivityChartData {
+  labels: string[];
+  datasets: Array<{ label: string; data: number[] }>;
 }
 
 export interface IChartData {
-  chartOptions: ChartOptions;
-  chartType: ChartType;
-  chartLegend: boolean;
+  options: ChartOptions;
+  type: ChartType;
+  legend: boolean;
+  isWide?: boolean;
+}
+
+export interface IChartCheckBoxOption {
+  id: string;
+  label: string;
+  type: string;
+  isVisibleByDefaut: boolean;
 }

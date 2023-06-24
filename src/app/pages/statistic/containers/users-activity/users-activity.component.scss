@@ -19,19 +19,12 @@
     .charts-wrapper {
       @apply w-full flex flex-col justify-center items-center;
 
-      .chart-wrapper__bar {
+      .chart-wrapper__wide {
         @apply bg-white w-[60vw] my-3;
       }
 
-      .chart-wrapper_line {
-        @apply flex;
-
-        .chart-wrapper__doughnut {
-          @apply bg-white rounded-md w-[30vw] m-3;
-        }
-        .chart-wrapper__radar {
-          @apply bg-white rounded-md w-[30vw] m-3;
-        }
+      .chart-wrapper__slim {
+        @apply bg-white rounded-md w-[30vw] m-3;
       }
 
       .chart-wrapper__line {
