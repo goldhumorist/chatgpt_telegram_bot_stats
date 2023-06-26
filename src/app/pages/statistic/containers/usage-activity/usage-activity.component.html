@@ -1,1 +1,28 @@
-<p>usage-activity works!</p>
+<app-page-tittle title="Check the service usage activity"></app-page-tittle>
+
+<div class="managing-container">
+  <app-navigation-link
+    [navigationLinkOptions]="{
+          title: 'GO BACK',
+          navigateTo: backRoute,
+          isLeftArrow:true,
+        }">
+  </app-navigation-link>
+
+  <app-navigation-link
+    [navigationLinkOptions]="{
+          title: 'GO NEXT',
+          navigateTo: '/statistic/users-activity',
+          isLeftArrow:false,
+        }">
+  </app-navigation-link>
+</div>
+
+<div class="main-content__container">
+  <div class="form__container">
+    <app-statistic-form
+      formTitle="Search usage activity"
+      [isAdvancedForm]="true"
+      (statsFormEmitter)="onFormSubmit($event)"></app-statistic-form>
+  </div>
+</div>
