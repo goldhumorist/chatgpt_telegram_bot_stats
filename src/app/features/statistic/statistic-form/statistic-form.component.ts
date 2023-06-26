@@ -3,10 +3,16 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-statistic-form',
@@ -19,14 +25,28 @@ export class StatisticFormComponent implements OnInit {
 
   statisticForm!: FormGroup;
 
+  @Input() formTitle!: string;
+
+  @Input() isAdvancedForm!: boolean;
+
   @Output()
   statsFormEmitter: EventEmitter<IUsersActivityReqData> = new EventEmitter();
 
   ngOnInit(): void {
-    this.statisticForm = this.formBuilder.group({
-      dateFrom: null,
-      dateTo: null,
-    });
+    this.statisticForm = this.formBuilder.group(
+      {
+        interval: this.isAdvancedForm ? ['month', Validators.required] : null,
+        dateFrom: this.isAdvancedForm
+          ? new Date(
+              new Date().getFullYear(),
+              new Date().getMonth() - 3,
+              new Date().getDate() + 1
+            )
+          : null,
+        dateTo: this.isAdvancedForm ? new Date() : null,
+      },
+      { validators: this.isAdvancedForm ? this.dateRangeValidator : null }
+    );
   }
 
   onSubmit() {
@@ -35,5 +55,28 @@ export class StatisticFormComponent implements OnInit {
 
   isFormValid() {
     return this.statisticForm.valid;
+  }
+
+  isDateRangeInvalid(): boolean {
+    return this.statisticForm.errors?.['dateRange'];
+  }
+
+  private dateRangeValidator(formGroup: FormGroup): ValidationErrors | null {
+    const startDate = new Date(formGroup.get('dateFrom')?.value);
+    const endDate = new Date(formGroup.get('dateTo')?.value);
+    const allowedNumberOfMonths = 3;
+
+    if (startDate && endDate) {
+      const threeMonthsAgo = new Date();
+      threeMonthsAgo.setMonth(
+        threeMonthsAgo.getMonth() - allowedNumberOfMonths
+      );
+
+      if (startDate < threeMonthsAgo) {
+        return { dateRange: true };
+      }
+    }
+
+    return null;
   }
 }

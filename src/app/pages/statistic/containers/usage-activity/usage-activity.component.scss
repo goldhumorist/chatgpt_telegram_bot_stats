@@ -1,0 +1,11 @@
+.managing-container {
+  @apply flex justify-between;
+}
+
+.main-content__container {
+  @apply flex h-full;
+
+  .form__container {
+    @apply w-[23vw];
+  }
+}
