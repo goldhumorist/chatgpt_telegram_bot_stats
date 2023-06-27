@@ -1,8 +1,8 @@
 import { ChartOptions, ChartType } from 'chart.js';
 
 export interface IUsersActivityReqData {
-  dateFrom?: Date;
-  dateTo?: Date;
+  dateFrom?: string;
+  dateTo?: string;
 }
 
 export enum TimeInterval {
@@ -13,14 +13,14 @@ export enum TimeInterval {
 
 export interface IStatisticReqData {
   interval: TimeInterval;
-  dateFrom: Date;
-  dateTo: Date;
+  dateFrom: string;
+  dateTo: string;
 }
 
 export interface IUsageActivityReqData {
   interval: TimeInterval;
-  dateFrom: Date;
-  dateTo: Date;
+  dateFrom: string;
+  dateTo: string;
 }
 
 export interface IUserActivityChartData {

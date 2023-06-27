@@ -15,8 +15,8 @@ export interface ISearchFormOptions {
 export interface ISearchFormData {
   searchWord: string;
   searchIn?: string;
-  dateFrom?: Date;
-  dateTo?: Date;
+  dateFrom?: string;
+  dateTo?: string;
   page?: number;
   limit?: number;
 }

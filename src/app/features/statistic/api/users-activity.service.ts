@@ -22,10 +22,9 @@ export class UsersActivityService {
 
     let params = new HttpParams();
 
-    if (dateFrom)
-      params = params.set('searchFrom', dateFrom as unknown as string);
+    if (dateFrom) params = params.set('searchFrom', dateFrom);
 
-    if (dateTo) params = params.set('searchTo', dateTo as unknown as string);
+    if (dateTo) params = params.set('searchTo', dateTo);
 
     return this.baseApiService
       .get<IUsersActivityStatHTTPResponse>('/api/v1/statistic/users-activity', {

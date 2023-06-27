@@ -24,10 +24,9 @@ export class FullTextSearchService {
       .set('page', page || 1)
       .set('limit', limit || 20);
 
-    if (dateFrom)
-      params = params.set('searchFrom', dateFrom as unknown as string);
+    if (dateFrom) params = params.set('searchFrom', dateFrom);
 
-    if (dateTo) params = params.set('searchTo', dateTo as unknown as string);
+    if (dateTo) params = params.set('searchTo', dateTo);
 
     return this.baseApiService
       .get<IFullTextHTTPResponse>('/api/v1/search/full-text', {

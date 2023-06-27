@@ -39,8 +39,8 @@ export class UsageActivityComponent implements OnInit {
       new Date().getDate() + 6
     )
       .toISOString()
-      .split('T')[0] as any as Date,
-    dateTo: new Date().toISOString().split('T')[0] as any as Date,
+      .split('T')[0],
+    dateTo: new Date().toISOString().split('T')[0],
   };
 
   ngOnInit(): void {
