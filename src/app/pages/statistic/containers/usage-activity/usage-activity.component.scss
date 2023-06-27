@@ -9,11 +9,22 @@
     @apply w-[23vw];
   }
 
-  .charts-wrapper {
-    @apply w-full flex flex-col justify-center items-center;
+  .chart_checkbox-container {
+    @apply m-3 w-[60vw];
 
-    .chart-wrapper__wide {
-      @apply bg-white w-[60vw] my-3;
+    .checkbox_container {
+      @apply flex justify-between;
+    }
+    .charts-wrapper {
+      @apply w-full flex flex-col justify-center items-center;
+
+      .chart-wrapper__wide {
+        @apply bg-white w-[60vw] my-3;
+      }
+
+      .chart-wrapper__slim {
+        @apply bg-white rounded-md w-[30vw] m-3;
+      }
     }
   }
 }

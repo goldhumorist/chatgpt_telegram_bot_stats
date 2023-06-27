@@ -22,8 +22,8 @@ export class UsageActivityService {
 
     const params = new HttpParams()
       .set('calendarInterval', interval)
-      .set('searchFrom', dateFrom as unknown as string)
-      .set('searchTo', dateTo as unknown as string);
+      .set('searchFrom', dateFrom)
+      .set('searchTo', dateTo);
 
     return this.baseApiService
       .get<IUsageActivityStatHTTPResponse>('/api/v1/statistic/usage-activity', {

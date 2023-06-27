@@ -1,6 +1,8 @@
+import { UsersActivityChartsService } from './../../../../features/statistic/api/users-activity-charts.service';
 import { BehaviorSubject, Observable, finalize, map } from 'rxjs';
 import { UsageActivityService } from './../../../../features/statistic/api/usage-activity.service';
 import {
+  IChartCheckBoxOption,
   IChartData,
   IUsageActivityChartData,
   IUsageActivityReqData,
@@ -16,20 +18,21 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsageActivityComponent implements OnInit {
-  constructor(private usageActivityService: UsageActivityService) {}
+  constructor(
+    private usageActivityService: UsageActivityService,
+    private usersActivityChartsService: UsersActivityChartsService
+  ) {}
 
   readonly backRoute = AppRouteEnum.ToBack;
 
   usageActivityStats$!: Observable<IUsageActivityChartData>;
   isLoading$ = new BehaviorSubject<boolean>(false);
 
-  chart: IChartData = {
-    options: {
-      responsive: true,
-    },
-    type: 'bar',
-    legend: true,
-  };
+  availableCharts: Array<IChartData> =
+    this.usersActivityChartsService.getAvailableCharts();
+
+  chartCheckBoxOptions: Array<IChartCheckBoxOption> =
+    this.usersActivityChartsService.getChartCheckBoxOptions();
 
   initialDataToRequest: IUsageActivityReqData = {
     interval: TimeInterval.week,
@@ -39,8 +42,8 @@ export class UsageActivityComponent implements OnInit {
       new Date().getDate() + 6
     )
       .toISOString()
-      .split('T')[0] as any as Date,
-    dateTo: new Date().toISOString().split('T')[0] as any as Date,
+      .split('T')[0],
+    dateTo: new Date().toISOString().split('T')[0],
   };
 
   ngOnInit(): void {
@@ -51,6 +54,13 @@ export class UsageActivityComponent implements OnInit {
 
   onFormSubmit(data: IUsageActivityReqData) {
     this.usageActivityStats$ = this.getUsageActivityStats(data);
+  }
+
+  updateChartVisibility(chartType: string, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    this.usersActivityChartsService.updateChartVisibility(chartType, isChecked);
+    this.availableCharts = this.usersActivityChartsService.getAvailableCharts();
   }
 
   private getUsageActivityStats(data: IUsageActivityReqData) {
