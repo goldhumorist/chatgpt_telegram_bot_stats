@@ -3,9 +3,25 @@
 }
 
 .main-content__container {
-  @apply flex h-full;
+  @apply flex h-full w-full;
 
   .form__container {
     @apply w-[23vw];
   }
+
+  .charts-wrapper {
+    @apply w-full flex flex-col justify-center items-center;
+
+    .chart-wrapper__wide {
+      @apply bg-white w-[60vw] my-3;
+    }
+  }
+}
+
+.emty-response {
+  @apply text-xl text-center w-full;
+}
+
+.loading-container {
+  @apply w-full h-full;
 }

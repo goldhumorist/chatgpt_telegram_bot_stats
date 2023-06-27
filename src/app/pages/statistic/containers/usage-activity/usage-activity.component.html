@@ -25,4 +25,38 @@
       [isAdvancedForm]="true"
       (statsFormEmitter)="onFormSubmit($event)"></app-statistic-form>
   </div>
+
+  <ng-container
+    *ngIf="
+      usageActivityStats$ | async as usageActivityStats;
+      else noDataOrLoading
+    ">
+    <ng-container *ngIf="usageActivityStats.labels.length; else noData">
+      <div class="charts-wrapper">
+        <div class="chart-wrapper__wide">
+          <canvas
+            baseChart
+            [datasets]="usageActivityStats.datasets"
+            [labels]="usageActivityStats.labels"
+            [options]="chart.options"
+            [legend]="chart.legend"
+            [type]="chart.type">
+          </canvas>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
 </div>
+
+<ng-template #noData>
+  <div class="emty-response">We are sorry, there is no statistic :(</div>
+</ng-template>
+
+<ng-template #noDataOrLoading>
+  <ng-container *ngIf="isLoading$ | async as isLoading; else noData">
+    <div class="loading-container">
+      <app-loading-spiner
+        [spinerOptions]="{ spinerSize: '60' }"></app-loading-spiner>
+    </div>
+  </ng-container>
+</ng-template>
