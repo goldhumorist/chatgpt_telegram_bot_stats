@@ -89,6 +89,25 @@ export interface IUsersActivityStatResponse {
   }>;
 }
 
+export interface IUsageActivityStatHTTPResponse {
+  status: number;
+  data: {
+    usageActivity: Array<{
+      key_as_string: string;
+      key: string;
+      doc_count: number;
+    }>;
+  };
+}
+
+export interface IUsageActivityStatResponse {
+  usageActivity: Array<{
+    key_as_string: string;
+    key: string;
+    doc_count: number;
+  }>;
+}
+
 export interface ISearchByUsernameResponse {
   total: {
     value: number;

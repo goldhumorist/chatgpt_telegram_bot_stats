@@ -5,7 +5,30 @@ export interface IUsersActivityReqData {
   dateTo?: Date;
 }
 
+export enum TimeInterval {
+  day = 'day',
+  week = 'week',
+  month = 'month',
+}
+
+export interface IStatisticReqData {
+  interval: TimeInterval;
+  dateFrom: Date;
+  dateTo: Date;
+}
+
+export interface IUsageActivityReqData {
+  interval: TimeInterval;
+  dateFrom: Date;
+  dateTo: Date;
+}
+
 export interface IUserActivityChartData {
+  labels: string[];
+  datasets: Array<{ label: string; data: number[] }>;
+}
+
+export interface IUsageActivityChartData {
   labels: string[];
   datasets: Array<{ label: string; data: number[] }>;
 }
