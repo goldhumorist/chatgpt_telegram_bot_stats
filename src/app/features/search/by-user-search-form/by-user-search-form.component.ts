@@ -1,4 +1,4 @@
-import { ISearchFormOptions, ISearchFormData } from './../../interfaces';
+import { ISearchFormOptions, ISearchFormData } from '../../interfaces';
 import {
   ChangeDetectionStrategy,
   EventEmitter,
@@ -10,15 +10,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-search-form',
-  templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.scss'],
+  selector: 'app-by-user-search-form',
+  templateUrl: './by-user-search-form.component.html',
+  styleUrls: ['./by-user-search-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchFormComponent implements OnInit {
-  @Input() searchFormOptions!: ISearchFormOptions & {
-    isFullTextSearchForm: boolean;
-  };
+export class ByUserSearchFormComponent implements OnInit {
+  @Input() searchFormOptions!: ISearchFormOptions;
 
   @Output()
   searchFormEmitter: EventEmitter<ISearchFormData> = new EventEmitter();
@@ -30,9 +28,7 @@ export class SearchFormComponent implements OnInit {
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       searchWord: ['', [Validators.required, Validators.minLength(2)]],
-      searchIn: this.searchFormOptions.isFullTextSearchForm
-        ? ['question', Validators.required]
-        : null,
+      searchIn: null,
       dateFrom: null,
       dateTo: null,
     });

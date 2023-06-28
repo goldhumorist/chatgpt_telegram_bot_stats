@@ -19,12 +19,9 @@
 </div>
 
 <div class="main-content__container">
-  <div class="form__container">
-    <app-statistic-form
-      formTitle="Search usage activity"
-      [isAdvancedForm]="true"
-      (statsFormEmitter)="onFormSubmit($event)"></app-statistic-form>
-  </div>
+  <app-usage-statistic-form
+    formTitle="Search usage activity"
+    (statsFormEmitter)="onFormSubmit($event)"></app-usage-statistic-form>
 
   <div class="chart_checkbox-container">
     <fieldset>

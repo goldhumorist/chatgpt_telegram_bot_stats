@@ -1,4 +1,4 @@
-import { StatisticFormModule } from './../../../../features/statistic/statistic-form/statistic-form.module';
+import { FeaturesModule } from './../../../../features/';
 import { SharedModule } from './../../../../shared/shared.module';
 import { UsageActivityRouting } from './usage-activity.routing';
 import { NgModule } from '@angular/core';
@@ -12,7 +12,7 @@ import { NgChartsModule } from 'ng2-charts';
     CommonModule,
     UsageActivityRouting,
     SharedModule,
-    StatisticFormModule,
+    FeaturesModule,
     NgChartsModule,
   ],
 })

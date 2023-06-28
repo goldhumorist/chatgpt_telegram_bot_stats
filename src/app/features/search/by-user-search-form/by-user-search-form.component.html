@@ -1,0 +1,29 @@
+<app-base-form>
+  <form class="form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label class="label">{{ searchFormOptions.title }}*</label>
+      <input
+        type="text"
+        [placeholder]="searchFormOptions.titlePlaceholder"
+        formControlName="searchWord"
+        [class.error_input]="doesFieldHaveError('searchWord')" />
+      <ng-container *ngIf="doesFieldHaveError('searchWord')">
+        <span class="error-message">Minimun 2 characters</span>
+      </ng-container>
+    </div>
+
+    <div class="field">
+      <label class="label">Date from</label>
+      <input type="date" formControlName="dateFrom" />
+    </div>
+
+    <div class="field">
+      <label class="label">Date To</label>
+      <input type="date" formControlName="dateTo" />
+    </div>
+
+    <div class="submit-button__container">
+      <button [disabled]="!isFormValid()" class="submit-button">SEARCH</button>
+    </div>
+  </form>
+</app-base-form>

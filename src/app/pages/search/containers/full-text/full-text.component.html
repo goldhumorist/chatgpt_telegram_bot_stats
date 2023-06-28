@@ -21,15 +21,12 @@
 </div>
 
 <div class="main-content__container">
-  <div class="form__container">
-    <app-search-form
-      [searchFormOptions]="{
-        title: 'Full-Text Search',
-        titlePlaceholder: 'Enter a word or a phase for search',
-        isFullTextSearchForm: true
-      }"
-      (searchFormEmitter)="onSearchSubmit($event)"></app-search-form>
-  </div>
+  <app-full-text-search-form
+    [searchFormOptions]="{
+      title: 'Full-Text Search',
+      titlePlaceholder: 'Enter a word or a phase for search',
+    }"
+    (searchFormEmitter)="onSearchSubmit($event)"></app-full-text-search-form>
 
   <ng-container
     *ngIf="searchResponse$ | async as searchResponse; else noSearchResult">

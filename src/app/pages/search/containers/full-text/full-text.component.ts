@@ -1,7 +1,7 @@
 import { AppRouteEnum } from './../../../../core/enums/app-routes';
 import { IFullTextSearchResponse } from './../../../../features/interfaces';
 import { SearchRoutingEnum } from '../../enums';
-import { FullTextSearchService } from '../../../../features/search/api/full-text-seach.service';
+import { FullTextSearchService } from '../../../../features/search';
 import { TFullTextSearchData } from './../../interfaces';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BehaviorSubject, Observable, finalize, shareReplay } from 'rxjs';

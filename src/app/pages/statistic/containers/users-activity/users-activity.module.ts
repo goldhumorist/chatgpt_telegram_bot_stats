@@ -1,4 +1,4 @@
-import { StatisticFormModule } from './../../../../features/statistic/';
+import { FeaturesModule } from './../../../../features/';
 import { SharedModule } from './../../../../shared/shared.module';
 import { UsersActivityRouting } from './users-activity.routing';
 import { NgModule } from '@angular/core';
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     UsersActivityRouting,
     SharedModule,
     NgChartsModule,
-    StatisticFormModule,
+    FeaturesModule,
     FormsModule,
   ],
 })

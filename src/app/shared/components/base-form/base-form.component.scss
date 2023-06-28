@@ -1,0 +1,37 @@
+.form__container {
+  @apply w-[23vw];
+}
+::ng-deep .form {
+  @apply w-full border-t-2 
+  border-indigo-500 shadow-lg shadow-indigo-300 px-3 py-1;
+}
+::ng-deep .form-title {
+  @apply text-lg text-center;
+}
+
+::ng-deep .field {
+  @apply py-3 flex flex-col h-20; // w-[95%];
+}
+::ng-deep input {
+  @apply text-black p-1;
+}
+
+::ng-deep select {
+  @apply text-black p-1;
+}
+
+::ng-deep .submit-button__container {
+  @apply flex justify-center mt-4 mb-3;
+}
+::ng-deep .submit-button {
+  @apply py-2 px-10 bg-primary-btn-color rounded-xl
+          disabled:opacity-70;
+}
+
+::ng-deep .error_input {
+  @apply outline-2 outline-red-500 border-red-700;
+}
+
+::ng-deep .error-message {
+  @apply px-1 text-sm text-red-500;
+}

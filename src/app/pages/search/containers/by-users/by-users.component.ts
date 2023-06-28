@@ -1,7 +1,7 @@
 import { AppRouteEnum } from './../../../../core/enums/app-routes';
 import { BehaviorSubject, Observable, finalize, shareReplay } from 'rxjs';
 import { ISearchByUsernameResponse } from './../../../../features/interfaces';
-import { SearchByUsernameService } from './../../../../features/search/api/seach-by-username.service';
+import { SearchByUsernameService } from './../../../../features/search';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SearchRoutingEnum } from '../../enums';
 import { TSearchByUsernameData } from '../../interfaces';
