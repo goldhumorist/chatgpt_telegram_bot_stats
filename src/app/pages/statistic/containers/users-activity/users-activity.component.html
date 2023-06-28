@@ -19,11 +19,11 @@
 </div>
 
 <div class="main-content__container">
-  <div class="form__container">
-    <app-statistic-form
-      formTitle="Find Users activity statistic for specific time period"
-      (statsFormEmitter)="onFormSubmit($event)"></app-statistic-form>
-  </div>
+  <app-users-statistic-form
+    formTitle="Find Users activity statistic for specific time period"
+    (statsFormEmitter)="onFormSubmit($event)">
+    >
+  </app-users-statistic-form>
 
   <div class="chart_checkbox-container">
     <fieldset>

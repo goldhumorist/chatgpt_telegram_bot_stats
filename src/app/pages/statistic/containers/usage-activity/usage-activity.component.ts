@@ -1,6 +1,8 @@
-import { UsersActivityChartsService } from './../../../../features/statistic/api/users-activity-charts.service';
+import {
+  UsersActivityChartsService,
+  UsageActivityService,
+} from './../../../../features/statistic';
 import { BehaviorSubject, Observable, finalize, map } from 'rxjs';
-import { UsageActivityService } from './../../../../features/statistic/api/usage-activity.service';
 import {
   IChartCheckBoxOption,
   IChartData,

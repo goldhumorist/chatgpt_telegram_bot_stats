@@ -6,7 +6,7 @@
   <app-navigation-link
     [navigationLinkOptions]="{
       title: 'GO BACK',
-      navigateTo:'backRoute',
+      navigateTo: backRoute,
       isLeftArrow:true,
     }">
   </app-navigation-link>
@@ -21,15 +21,12 @@
 </div>
 
 <div class="main-content__container">
-  <div class="form__container">
-    <app-search-form
-      [searchFormOptions]="{
-        title: 'Searcxh by username',
-        titlePlaceholder: 'Enter username to find logs',
-        isFullTextSearchForm: false
-      }"
-      (searchFormEmitter)="onSearchSubmit($event)"></app-search-form>
-  </div>
+  <app-by-user-search-form
+    [searchFormOptions]="{
+      title: 'Searcxh by username',
+      titlePlaceholder: 'Enter username to find logs',
+    }"
+    (searchFormEmitter)="onSearchSubmit($event)"></app-by-user-search-form>
 
   <ng-container
     *ngIf="searchResponse$ | async as searchResponse; else noSearchResult">
